@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
 
 	public function __construct()
-	{	
+	{
 		parent::__construct();
 		$this->load->model('Sewa_Model');
 		$this->load->model('Drivers_Model');
@@ -16,12 +16,11 @@ class Dashboard extends CI_Controller {
 
 	function index(){
 		$id = $this->session->userdata('id');
-		
+
 		$data = array(
 			'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_masuk($id),
-			
 		);
-		  
+
 		$this->load->view('driver/Dashboard',$data);
 	}
 
@@ -30,10 +29,10 @@ class Dashboard extends CI_Controller {
 		$data = array(
 			'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_menunggu_perjalanan($id),
 			'close_trip_action'   => base_url('driver/Dashboard/close_trip'),
-			
-			
+
+
 		);
-		  
+
 		$this->load->view('driver/List_Menunggu_Perjalanan',$data);
 	}
 
@@ -41,9 +40,9 @@ class Dashboard extends CI_Controller {
 		$id = $this->session->userdata('id');
 		$data = array(
 			'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_selesai($id),
-			
+
 		);
-		  
+
 		$this->load->view('driver/List_Selesai',$data);
 	}
 
@@ -51,7 +50,7 @@ class Dashboard extends CI_Controller {
 		$id = $this->session->userdata('id');
 		$data = array(
 			'list_sewa_ditolak'     => $this->Sewa_Model->driver_list_sewa_ditolak($id),
-			
+
 		);
 		  //print_r($data);
 		$this->load->view('driver/List_Ditolak',$data);
@@ -65,13 +64,13 @@ class Dashboard extends CI_Controller {
 
 		$this->db->query("UPDATE order_sewa SET status = 2 WHERE id_order = '$id'");
 		$this->db->query("UPDATE mobil SET km_awal = '$km_awal' WHERE id_mobil = '$id_mobil'");
-		
+
 		redirect('driver/Dashboard', 'refresh');
 	}
 
 	function tolak($id){
 		$alasan = $this->input->post('alasan');
-		
+
 		$order = $this->db->query("SELECT * FROM order_sewa WHERE id_order = '$id'")->row();
 		$id_driver = $order->id_driver;
 
@@ -80,11 +79,11 @@ class Dashboard extends CI_Controller {
 
 		redirect('driver/Dashboard/ditolak', 'refresh');
 		//print_r($order);
-		
+
 	}
 
 	function close_trip($id,$id_mobil){
-		
+
 		$km_akhir = $this->input->post('km_akhir');
 
 		$this->db->query("UPDATE order_sewa SET status = 6 WHERE id_order = '$id'");
@@ -136,27 +135,27 @@ class Dashboard extends CI_Controller {
 				$foto_driver = $this->upload->data();
 
 				$data = array(
-					'nama_driver' 		=> $nama_driver,     
-					'no_hp' 		    => $no_hp,   
+					'nama_driver' 		=> $nama_driver,
+					'no_hp' 		    => $no_hp,
 					'foto_driver'		=> $foto_driver['file_name'],
 				);
 
 			}else{
 				$data = array(
-					'nama_driver' 		=> $nama_driver,     
-					'no_hp' 		    => $no_hp,  
+					'nama_driver' 		=> $nama_driver,
+					'no_hp' 		    => $no_hp,
 				);
 			}
- 
-		
+
+
 		$this->Drivers_Model->edit_data($data,$id_driver);
-		
+
 
 		// print_r($data);
 		redirect('driver/Dashboard', 'refresh');
 	}
- 
-	
+
+
 }
 
 /* End of file Dashboard.php */

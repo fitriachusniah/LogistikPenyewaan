@@ -10,6 +10,9 @@
  	<script src="<?= base_url() ?>assets/js/scripts/datatables.script.min.js"></script>
  	<script src="<?= base_url() ?>assets/js/scripts/customizer.script.min.js"></script>
 
+  <?php if (isset($js_file)) {
+    $this->load->view('admin/'.$js_file);
+  } ?>
  	</body>
 
  	</html>

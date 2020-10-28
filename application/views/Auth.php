@@ -14,9 +14,10 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="p-4">
-						
+
 						<h1 class="mb-3 text-18">Sign In</h1>
 						<p style="color:red"><?php echo $info ?></p>
+						<p style="color:red"><?php if(isset($_GET['info']))echo $_GET['info'] ?></p>
 						<form method="POST" action="<?=base_url()?>Login/login">
 							<div class="form-group">
 								<label for="email">Username</label>

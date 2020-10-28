@@ -10,7 +10,7 @@ class Login extends CI_Controller {
 		$this->load->model('Drivers_Model');
 		$this->load->model('Cars_Model');
 		date_default_timezone_set("Asia/Jakarta");
-	} 
+	}
 
 	public function index()
 	{
@@ -18,7 +18,7 @@ class Login extends CI_Controller {
 			'title'	=> 'Auth',
 			'info' => ''
 		];
-		$this->load->view('auth', $data);
+		$this->load->view('Auth', $data);
 	}
 
 	public function login()
@@ -30,30 +30,25 @@ class Login extends CI_Controller {
 
 		if ($cek) {
 			if($cek->role_id == '1'){
-				
+
 				$data_session = array(
 						'user_name' 	=> $cek->user_name,
 						'role' 			=> $cek->role_name,
 						'user_id'		=> $cek->user_id,
 						'status' 		=> 'login',
 						'month'		    => date("F"),
-						'mobil'			=> $this->Cars_Model->getCarsTotal(),
-						'driver'		=> $this->Drivers_Model->getDriversTotal(),
-						'request'		=> $this->Sewa_Model->getRequestsTotal(),
-						'approved'		=> $this->Sewa_Model->getApprovedTotal(),
-						'cost'			=> $this->Sewa_Model->getCostTotalThisMonth(),
-
 				);
 
 				$this->session->set_userdata($data_session);
-				$this->load->view('admin/Dashboard',$data_session);
-				
+				// $this->load->view('admin/Dashboard',$data_session);
+				redirect(base_url('admin/Dashboard'),'refresh');
+
 
 			}else if($cek->role_id == '2'){
 
 					if ($cek->user_status != '1') {
 						$data['info'] = 'Maaf akun anda tidak aktif silahkan hubungi admin';
-						$this->load->view('auth',$data);
+						$this->load->view('Auth',$data);
 					}else{
 						$driver = $this->db->query("SELECT * FROM driver WHERE user_id = '$cek->user_id'")->row();
 						$data_session = array(
@@ -68,6 +63,7 @@ class Login extends CI_Controller {
 
 						$this->session->set_userdata($data_session);
 						$this->load->view('driver/Dashboard',$data_session);
+						// redirect(base_url().'driver/Dashboard','refresh');
 					}
 			}else if($cek->role_id == '3'){
 
@@ -97,6 +93,7 @@ class Login extends CI_Controller {
 
 						$this->session->set_userdata($data_session);
 						$this->load->view('konsumen/Dashboard',$data_session);
+						// redirect(base_url().'konsumen/Dashboard','refresh');
 					}
 			}
 		}else{
@@ -109,5 +106,5 @@ class Login extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect(base_url('Login'));
 	}
-	
+
 }

@@ -10,11 +10,32 @@
     <link href="<?=base_url()?>assets/css/themes/lite-purple.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/datatables.min.css" rel="stylesheet"  />
+    <style media="screen">
+        .terima_sewa ul {
+          appearance: button;
+          -moz-appearance: button;
+          -webkit-appearance: button;
+          -webkit-padding-start: 0;
+          -moz-padding-start: 0;
+          width: 160px;
+          height: 32px;
+          left: 24px;
+          position: relative;
+        }
+
+        .terima_sewa ul li:nth-child(1):after {
+          position: absolute;
+          content: "▼";
+          right: 10px;
+          top: 10px;
+          font-size: 12px;
+          opacity: .75;
+        }
+    </style>
 </head>
 
 <body class="text-left">
-<?php 
+<?php
 	$this->load->view('admin/_partials/layout');
-	$this->load->view('admin/_partials/navbar'); 
+	$this->load->view('admin/_partials/navbar');
 ?>
-

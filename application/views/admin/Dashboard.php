@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
                             <div class="card-body text-center"><i class="i-Car-2"></i>
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
                             <div class="card-body text-center"><i class="i-Men"></i>
@@ -67,7 +67,7 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="card-title">This Year Sales</div>
-                                <div id="echartBar" style="height: 300px;"></div>
+                                <div id="dashboardChart" style="height: 300px;"></div>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="card mb-4">
@@ -118,7 +118,7 @@
                                         <h5><a href="">Wireless Headphone E09</a></h5>
                                         <p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                         <p class="text-small text-danger m-0">$250
-                                            
+
                                         </p>
                                     </div>
                                     <div>
@@ -134,7 +134,7 @@
                                         <p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                         <p class="text-small text-danger m-0">
                                         $450
-                                           
+
                                         </p>
                                     </div>
                                     <div>
@@ -156,7 +156,7 @@
                                     <div class="flex-grow-1">
                                         <h5><a href="">Indo Shop</a></h5>
                                         <p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                       
+
                                     </div>
                                     <div>
                                         <button class="btn btn-outline-primary mt-3 mb-3 m-sm-0 btn-rounded btn-sm">
@@ -168,7 +168,7 @@
                                     <div class="flex-grow-1">
                                         <h5><a href="">Jaya Shop</a></h5>
                                         <p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                       
+
                                     </div>
                                     <div>
                                         <button class="btn btn-outline-primary mt-3 mb-3 m-sm-0 btn-sm btn-rounded">
@@ -181,7 +181,7 @@
                                     <div class="flex-grow-1">
                                         <h5><a href="">Makmur Shop</a></h5>
                                         <p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                        
+
                                         </p>
                                     </div>
                                     <div>
@@ -195,7 +195,7 @@
                                     <div class="flex-grow-1">
                                         <h5><a href="">Laju Shop</a></h5>
                                         <p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                       
+
                                         </p>
                                     </div>
                                     <div>
@@ -207,7 +207,7 @@
                                 </div>
                             </div>
                         </div>
-                      
+
                     </div>
                     <!-- end of top rated reseller -->
                 </div><!-- end of main-content -->

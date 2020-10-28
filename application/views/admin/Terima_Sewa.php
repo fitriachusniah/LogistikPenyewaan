@@ -19,7 +19,7 @@
               </a>
 			</div>
 		</div>
-		
+
 
 		<div class="row">
 			<div class="col-md-12 mb-4">
@@ -39,7 +39,7 @@
 													</option>
 												<?php  } ?>
 											</select>
-											
+
 										</div>
 									</div>
 
@@ -53,10 +53,11 @@
 													</option>
 												<?php  } ?>
 											</select>
-											
+											<!-- <ul id="catsSelect" class="catsSelect"></ul> -->
+
 										</div>
 									</div>
-									
+
 									<div class="col-md-6">
 									<div class="form-group">
 										<label for="">Cost (Rp)*</label>
@@ -111,7 +112,7 @@
 	<div class="search-title">
 		<span class="text-muted">Search results</span>
 	</div>
-	
+
 	<!-- PAGINATION CONTROL -->
 	<div class="col-md-12 mt-5 text-center">
 		<nav aria-label="Page navigation example">

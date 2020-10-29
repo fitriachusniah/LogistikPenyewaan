@@ -10,6 +10,7 @@
     <link href="<?=base_url()?>assets/css/themes/lite-purple.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/datatables.min.css" rel="stylesheet"  />
+    <link rel="manifest" href="manifest.webmanifest">
     <style media="screen">
         .terima_sewa ul {
           appearance: button;

@@ -10,11 +10,11 @@
     <link href="<?=base_url()?>assets/css/themes/lite-purple.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/datatables.min.css" rel="stylesheet"  />
+    <link rel="manifest" href="manifest.webmanifest">
 </head>
 
 <body class="text-left">
-<?php 
+<?php
 	$this->load->view('driver/_partials/layout');
-	$this->load->view('driver/_partials/navbar'); 
+	$this->load->view('driver/_partials/navbar');
 ?>
-

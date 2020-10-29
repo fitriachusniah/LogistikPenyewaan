@@ -23,6 +23,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+
+// $config['base_url'] = 'https://be258fda3ec2.ngrok.io/LogistikPenyewaan/';
 $config['base_url'] = 'http://localhost/LogistikPenyewaan/';
 
 /*
@@ -100,7 +102,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

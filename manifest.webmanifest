@@ -1,0 +1,15 @@
+{
+  "background_color": "purple",
+  "description": "Aplikasi milik Direktorat Logistik Telkom University.",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "assets/images/telkom.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "Penyewaan Logistik Tel-U",
+  "short_name": "Penyewaan Logistik",
+  "start_url": "/LogistikPenyewaan/"
+}

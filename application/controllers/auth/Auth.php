@@ -14,7 +14,7 @@ class Auth extends CI_Controller
 		if(isset($_GET['info'])){
 			$data['info'] = $_GET['info'];
 		}
-		
+
 		$this->load->view('auth', $data);
 	}
 }

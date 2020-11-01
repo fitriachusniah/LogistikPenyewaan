@@ -11,7 +11,7 @@
 			</ul>
 		</div>
 		<div class="separator-breadcrumb border-top"></div>
-		
+
 		<div class="row">
 			<div class="col-md-12 mb-4">
 				<div class="card text-left">
@@ -37,7 +37,7 @@
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
-												<?php 
+												<?php
 													if($value->daysRemaining<0){
 														echo "passed";
 													}else if($value->daysRemaining==0){
@@ -61,7 +61,7 @@
 				                                      <?php
 				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
 				                                       ?>
-				                                          <span class="badge badge-warning">Sedang Perjalanan</span>         	                           
+				                                          <span class="badge badge-warning">Sedang Perjalanan</span>
 				                                      <?php
 				                                        }else if($value->status==1 && $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
 				                                      ?>
@@ -76,10 +76,10 @@
 				                                      	  <span class="badge badge-danger">Permintaan Ditolak</span>
 				                                      <?php
 				                                        }
-				                                      ?>  
+				                                      ?>
 												</b>
 											</td>
-											<td class="text-center">												
+											<td class="text-center">
 												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
 													<i class="nav-icon i-Eye font-weight-bold">Detail</i>
 												</a>
@@ -88,17 +88,17 @@
 				                                       ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
 															<i class="nav-icon i-Yes font-weight-bold">Close Trip</i>
-														</a>	                                    
+														</a>
 				                                      <?php
 				                                        }else if($value->status==1 && $value->stat_drv==2 && $value->stat_cst==0){
 				                                      ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
 															<i class="nav-icon i-Yes font-weight-bold">Beri Rating</i>
-														</a>	                                    
+														</a>
 				                                      <?php
 				                                        }
 				                                      ?>
-				                                      								
+
 											</td>
 										</tr>
 									<?php } ?>
@@ -151,7 +151,7 @@
 				                                      <?php
 				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
 				                                       ?>
-				                                          <span class="badge badge-warning">Sedang Perjalanan</span>         	                           
+				                                          <span class="badge badge-warning">Sedang Perjalanan</span>
 				                                      <?php
 				                                        }else if($value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
 				                                      ?>
@@ -166,19 +166,19 @@
 				                                      	  <span class="badge badge-danger">Ditolak</span>
 				                                      <?php
 				                                        }
-				                                      ?>   
-					
+				                                      ?>
+
 				<table>
-						<?php 
+						<?php
 							if($key->stat_adm!=0 && $key->stat_drv!=0){
 						?>
 
 							<tr>
 								<td colspan="3">
 									<center>
-									<?php 
+									<?php
 			                          if (!$key->foto_driver) { ?>
-			                           
+
 			                         <?php } else { ?>
 			                          <img src="<?= base_url()?>assets/foto_driver/<?=$key->foto_driver ?>"  width='100px'>
 			                        <?php } ?>
@@ -189,9 +189,9 @@
 								<td><b>Driver</b></td>
 								<td>:</td>
 								<td>
-									<?php 
+									<?php
 										if($key->id_driver != Null){
-											echo "<b>".$key->nama_driver."</b>";	
+											echo "<b>".$key->nama_driver."</b>";
 										}else{
 											echo "-";
 										}
@@ -203,9 +203,9 @@
 								<td><b>No.HP Driver</b></td>
 								<td>:</td>
 								<td>
-									<?php 
+									<?php
 										if($key->id_driver != Null){
-											echo "<b>".$key->no_hp."</b>";	
+											echo "<b>".$key->no_hp."</b>";
 										}else{
 											echo "-";
 										}
@@ -217,9 +217,9 @@
 								<td>Mobil</td>
 								<td>:</td>
 								<td>
-									<?php 
+									<?php
 										if($key->id_mobil != Null){
-											echo $key->merk_mobil;	
+											echo $key->merk_mobil;
 										}else{
 											echo "-";
 										}
@@ -227,14 +227,14 @@
 
 								</td>
 							</tr>
-							
+
 							<tr>
 								<td>Cost Perjalanan</td>
 								<td>:</td>
 								<td>
-									<?php 
+									<?php
 										if($key->cost != Null){
-											echo "Rp".number_format($key->cost,2);	
+											echo "Rp".number_format($key->cost,2);
 										}else{
 											echo "-";
 										}
@@ -260,12 +260,12 @@
 							<td>Durasi</td>
 							<td>:</td>
 							<td><b>
-								<?php 
-									
+								<?php
+
 									$hourdiff = round((strtotime($key->tgl_pulang) - strtotime($key->tgl_pergi))/3600, 1);
 									echo $hourdiff." jam";
 							 	?>
-							 
+
 							 </b>
 							</td>
 						</tr>
@@ -288,9 +288,9 @@
 							<td>Catatan Khusus</td>
 							<td>:</td>
 							<td>
-								<?php 
+								<?php
 									if($key->note != Null){
-										echo $key->note;	
+										echo $key->note;
 									}else{
 										echo "-";
 									}
@@ -298,9 +298,9 @@
 
 							</td>
 						</tr>
-						
+
 					</table>
-					
+
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
@@ -325,30 +325,22 @@
 				</div>
 				<form action="<?= $finish_action ?>/<?= $key->id_order ?>" method="post">
 					<div class="modal-body">
-						<center><img src="<?=base_url()?>assets/images/star.png" alt="" width="100px" />
 						<div class="col-md-12">
 							<div class="form-group">
-								 <label for="">Berikan Penilaian*</label><br>
-								  <input type="radio" id="one" name="rating" value="1" required>
-								  <label for="one"><img src="<?=base_url()?>assets/images/1_star.png" alt="" width="30px" /></label>
-								  <input type="radio" id="two" name="rating" value="2">
-								  <label for="two"><img src="<?=base_url()?>assets/images/2_star.png" alt="" width="30px" /></label>
-								  <input type="radio" id="three" name="rating" value="3">
-								  <label for="three"><img src="<?=base_url()?>assets/images/3_star.png" alt="" width="30px" /></label>
-								   <input type="radio" id="four" name="rating" value="4">
-								  <label for="four"><img src="<?=base_url()?>assets/images/4_star.png" alt="" width="30px" /></label>
-								  <input type="radio" id="five" name="rating" value="5">
-								  <label for="five"><img src="<?=base_url()?>assets/images/5_star.png" alt="" width="30px" /></label>
+								 <h5 for="">Berikan Penilaian*</h5>
+								 <center>
+									 <div class="rate-bintang"></div>
+								 </center>
+								 <input type="hidden" name="rating" value="0" class="rating-value" id="rating-value-<?= $key->id_order ?>">
 							</div>
 						</div>
-						</center>
 						<div class="col-md-12">
-                                <div class="form-group">
-                                        <label for="">Berikan Komentar*</label>
-                                                            <textarea required="" name="komentar" class="form-control form-control-rounded" required=""></textarea>
-                                </div>
-                        </div>
-	                      <input type="hidden" name="status_order" value="<?= $key->status_order ?>">                          
+              <div class="form-group">
+                      <label for="">Berikan Komentar*</label>
+                    	<textarea required="" name="komentar" class="form-control form-control-rounded" required="" id="komentar-<?= $key->id_order ?>"></textarea>
+              </div>
+            </div>
+            <input type="hidden" name="status_order" id="status-<?= $key->id_order ?>" value="<?= $key->status_order ?>">
 					</div>
 					<div class="modal-footer justify-content-between">
 						<button type="submit" class="btn btn-primary ml-2">Save changes</button>
@@ -374,7 +366,7 @@
 	<div class="search-title">
 		<span class="text-muted">Search results</span>
 	</div>
-	
+
 	<!-- PAGINATION CONTROL -->
 	<div class="col-md-12 mt-5 text-center">
 		<nav aria-label="Page navigation example">
@@ -400,4 +392,4 @@
 </div>
 <!-- ============ Search UI End ============= -->
 
-<?php $this->load->view('admin/_partials/js'); ?>
+<?php $this->load->view('konsumen/_partials/js'); ?>

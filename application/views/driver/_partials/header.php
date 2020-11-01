@@ -10,10 +10,12 @@
     <link href="<?=base_url()?>assets/css/themes/lite-purple.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/datatables.min.css" rel="stylesheet"  />
-    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="manifest" href="<?= base_url('manifest.webmanifest') ?>">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="text-left">
+<?php echo $this->session->flashdata('notifikasi'); ?>
 <?php
 	$this->load->view('driver/_partials/layout');
 	$this->load->view('driver/_partials/navbar');

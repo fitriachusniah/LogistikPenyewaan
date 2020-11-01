@@ -10,10 +10,31 @@
     <link href="<?=base_url()?>assets/css/themes/lite-purple.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/plugins/datatables.min.css" rel="stylesheet"  />
-    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="manifest" href="<?= base_url('manifest.webmanifest') ?>">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style media="screen">
+      .rate-bintang
+      {
+        color: #d3e446;
+      }
+
+      @media only screen and (min-width: 600px) {
+        .rate-bintang{
+          font-size: 70px;
+        }
+      }
+
+      @media only screen and (min-width: 100px) {
+        .rate-bintang{
+          font-size: 50px;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="text-left">
+<?php echo $this->session->flashdata('notifikasi'); ?>
 <?php
 	$this->load->view('konsumen/_partials/layout');
 	$this->load->view('konsumen/_partials/navbar');

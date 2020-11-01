@@ -87,7 +87,8 @@ class Fakultas extends CI_Controller {
 
 	public function hapus($id)
 	{
-		$this->Fakultas_Model->delete_data($id);
+		$deleted_at       = date("Y-m-d H:i:s");
+		$this->Fakultas_Model->delete_data($id,$deleted_at);
 
 		$notif_message = "Data Fakultas berhasil dihapus";
 		$notif_action = 'success'; //success,error,warning,question

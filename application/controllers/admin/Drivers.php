@@ -69,6 +69,9 @@ class Drivers extends CI_Controller {
 			
 
 		$this->Drivers_Model->input_data($data,'driver');
+		$notif_message = "Data Driver berhasil ditambahkan";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Drivers', 'refresh');
 		
 	}
@@ -85,16 +88,20 @@ class Drivers extends CI_Controller {
 			'no_hp' 		    => $no_hp,   
 		);
 		$this->Drivers_Model->edit_data($data,$id_driver);
+		$notif_message = "Data Driver berhasil diubah";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Drivers', 'refresh');
 	}
 
 
 	public function hapus($id)
 	{		
-		// $driver = $this->db->query("SELECT * FROM driver JOIN users ON driver.user_id=users.user_id WHERE id_driver = '$id'")->row();
-		// $user_id = $driver->user_id;
-		// $this->db->query("DELETE FROM users WHERE user_id = '$user_id'");
-		$this->Drivers_Model->delete_data($id);
+		$deleted_at       = date("Y-m-d H:i:s");
+		$this->Drivers_Model->delete_data($id,$deleted_at);
+		$notif_message = "Data Driver berhasil dihapus";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Drivers','refresh');
 	}
 }

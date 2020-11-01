@@ -7,6 +7,7 @@ class Fakultas_Model extends CI_Model {
 	public function list()
 	{
 		return $this->db->query("SELECT * FROM fakultas
+								WHERE fakultas.deleted_at IS NULL
 								 ORDER BY fakultas.fakultas_id
 								")->result();
 	}
@@ -20,9 +21,9 @@ class Fakultas_Model extends CI_Model {
         $this->db->update('fakultas', $data);
 	}
 
-	public function delete_data($id)
+	public function delete_data($id,$tgl)
     {
-        $this->db->query("DELETE FROM fakultas
+        $this->db->query("UPDATE fakultas SET deleted_at='$tgl'
         				  WHERE fakultas_id = '$id'");
     }
 

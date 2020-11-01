@@ -44,7 +44,7 @@ class Dashboard extends CI_Controller {
 			'no_hp'				  => $fakultas->no_hp,
 			'user_id'			  => $fakultas->user_id,
 			'user_name'			  => $fakultas->user_name,
-			'password'			  => $fakultas->user_password,
+			'user_password'		  => $fakultas->user_password,
 			'edit_action'         => base_url('konsumen/Dashboard/konsumen_edit_profile'),
 		);
 		$this->load->view('konsumen/Update_Profile',$data);
@@ -62,9 +62,15 @@ class Dashboard extends CI_Controller {
 		$fakultas_username  = $this->input->post('user_name');
 		$fakultas_password  = $this->input->post('user_password');
 
+		if($fakultas_password==''){
+			$new_psw = $this->input->post('old_psw');
+ 		}else{
+ 			$new_psw = md5($fakultas_password);
+ 		}
+
 		$fakultas_user = array(
 			'user_name'			=> $fakultas_username,
-			'user_password'		=> md5($fakultas_password),
+			'user_password'		=> $new_psw,
 		);
 
 		$this->Users_Model->edit_data($fakultas_user,$fakultas_userid);
@@ -78,7 +84,9 @@ class Dashboard extends CI_Controller {
 		);
 		$this->Fakultas_Model->edit_data($data,$fakultas_id);
 
-		// print_r($data);
+		$notif_message = "Profile berhasil diubah";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('konsumen/Dashboard', 'refresh');
 	}
  

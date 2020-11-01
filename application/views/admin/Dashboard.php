@@ -55,7 +55,7 @@
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-3">
                             <div class="card-body text-center"><i class="i-Coin"></i>
                                 <div class="content" style="margin-left: 10%">
-                                    <p class="text-muted mt-2 mb-0">Total Cost</p>
+                                    <p class="text-muted mt-10 mb-0">Cost <b><?= $year ?></b> </p>
                                     <p class="text-primary text-24 line-height-1 mb-2">Rp<?= number_format($cost->thisMonthCost,2) ?></p>
                                     <p><a href="#">Detail</a></p>
                                 </div>

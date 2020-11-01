@@ -7,6 +7,7 @@ class Cars_Model extends CI_Model {
 	public function list()
 	{
 		return $this->db->query("SELECT * FROM mobil
+								 WHERE deleted_at IS NULL
 								 ORDER BY mobil.id_mobil
 								")->result();
 	}
@@ -26,9 +27,9 @@ class Cars_Model extends CI_Model {
         $this->db->update('mobil', $data);
 	}
 
-	public function delete_data($id)
+	public function delete_data($id,$tgl)
     {
-        $this->db->query("DELETE FROM mobil
+        $this->db->query("UPDATE mobil SET deleted_at='$tgl'
         				  WHERE id_mobil = '$id'");
     }
 

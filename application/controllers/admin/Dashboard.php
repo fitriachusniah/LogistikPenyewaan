@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller {
 		$data_session = array(
 				'js_file'   => 'Dashboard.js.php',
 				'status' 		=> 'login',
-				'month'		  => date("F"),
+				'year'		  => date("Y"),
 				'mobil'			=> $this->Cars_Model->getCarsTotal(),
 				'driver'		=> $this->Drivers_Model->getDriversTotal(),
 				'request'		=> $this->Sewa_Model->getRequestsTotal(),

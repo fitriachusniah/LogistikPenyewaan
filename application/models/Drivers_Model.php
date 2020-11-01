@@ -10,6 +10,7 @@ class Drivers_Model extends CI_Model {
 								 JOIN users ON users.user_id = driver.user_id
 								 LEFT JOIN order_sewa ON order_sewa.id_driver = driver.id_driver
 								 LEFT JOIN feedback_driver ON feedback_driver.id_order = order_sewa.id_order
+								 WHERE driver.deleted_at IS NULL
 								 GROUP BY driver.id_driver
 								 ORDER BY driver.id_driver
 								")->result();
@@ -39,6 +40,7 @@ class Drivers_Model extends CI_Model {
 															USING(id_driver)
 															 WHERE id_driver NOT IN
 															 (SELECT id_driver FROM order_sewa WHERE date(tgl_pergi) = '$tgl_pergi' OR stat_drv = '1')
+															 AND a.deleted_at IS NULL
 															 ORDER BY b.count ASC")->result();
 
 	}
@@ -52,9 +54,9 @@ class Drivers_Model extends CI_Model {
         $this->db->update('driver', $data);
 	}
 
-	public function delete_data($id)
+	public function delete_data($id,$tgl)
     {
-        $this->db->query("DELETE FROM driver
+        $this->db->query("UPDATE driver SET deleted_at='$tgl'
         				  WHERE id_driver = '$id'");
     }
 

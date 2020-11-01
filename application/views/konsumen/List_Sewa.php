@@ -67,7 +67,7 @@
 				                                      ?>
 				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
 				                                      <?php
-				                                        }else if($value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
+				                                        }else if($value->status==1 AND $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
 				                                      ?>
 				                                          <span class="badge badge-success">Selesai</span>
 				                                      <?php
@@ -90,7 +90,7 @@
 															<i class="nav-icon i-Yes font-weight-bold">Close Trip</i>
 														</a>
 				                                      <?php
-				                                        }else if($value->status==1 && $value->stat_drv==2 && $value->stat_cst==0){
+				                                        }else if($value->status==1 && $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
 				                                      ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
 															<i class="nav-icon i-Yes font-weight-bold">Beri Rating</i>
@@ -178,7 +178,7 @@
 									<center>
 									<?php
 			                          if (!$key->foto_driver) { ?>
-
+			                          	<img src="<?= base_url()?>assets/foto_driver/driver_default.png ?>"  width='100px'>
 			                         <?php } else { ?>
 			                          <img src="<?= base_url()?>assets/foto_driver/<?=$key->foto_driver ?>"  width='100px'>
 			                        <?php } ?>
@@ -213,6 +213,27 @@
 
 								</td>
 							</tr>
+
+							<?php
+                    				if($key->id_feedback==True){
+                    			?>
+
+                    					
+                    						<tr>
+												<td><b>Rating</b></td>
+												<td>:</td>
+												<td><?= number_format($key->rating,2) ?></td>
+											</tr>
+											<tr>
+												<td><b>Komentar</b></td>
+												<td>:</td>
+												<td><?= $key->komentar ?></td>
+											</tr>
+                    					
+                    			<?php
+                    				}
+                    			?>
+
 							<tr>
 								<td>Mobil</td>
 								<td>:</td>

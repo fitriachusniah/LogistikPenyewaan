@@ -44,6 +44,9 @@ class Sewa extends CI_Controller {
 			'id_fakultas'       => $id_fakultas,   
 		);
 		$this->Sewa_Model->input_data($data,'order_sewa');
+		$notif_message = "Permintaan Peminjaman Mobil Ditambahkan";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('konsumen/Sewa', 'refresh');
 		
 	}
@@ -54,10 +57,12 @@ class Sewa extends CI_Controller {
 		$komentar = $this->input->post('komentar');
 
 		$this->db->query("INSERT INTO feedback_driver(id_order, rating, komentar) VALUES ('$id','$rating','$komentar')");
-		if($status!='6') {
-			$this->db->query("UPDATE order_sewa SET stat_cst = '1' WHERE id_order = '$id'");
-		}
 		
+		$this->db->query("UPDATE order_sewa SET stat_cst = '1' WHERE id_order = '$id'");
+		
+		$notif_message = "Perjalanan selesai, trip closed";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('konsumen/Sewa', 'refresh');
 	}
 

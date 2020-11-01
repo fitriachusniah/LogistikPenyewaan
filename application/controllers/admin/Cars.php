@@ -38,6 +38,10 @@ class Cars extends CI_Controller {
 			'kapasitas'     => $kapasitas,   
 		);
 		$this->Cars_Model->input_data($data,'mobil');
+
+		$notif_message = "Data Mobil berhasil ditambahkan";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Cars', 'refresh');
 		
 	}
@@ -65,12 +69,20 @@ class Cars extends CI_Controller {
 			'status'		=> $status   
 		);
 		$this->Cars_Model->edit_data($data,$id_mobil);
+
+		$notif_message = "Data Mobil berhasil diubah";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Cars', 'refresh');
 	}
 
 	public function hapus($id)
 	{		
-		$this->Cars_Model->delete_data($id);
+		$deleted_at       = date("Y-m-d H:i:s");
+		$this->Cars_Model->delete_data($id,$deleted_at);
+		$notif_message = "Data Mobil berhasil dihapus";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Cars','refresh');
 	}
 }

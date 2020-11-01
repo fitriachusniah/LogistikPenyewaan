@@ -8,11 +8,12 @@ class Sewa_Model extends CI_Model {
 
 	public function list_sewa($id_fakultas)
 	{
-		return $this->db->query("SELECT order_sewa.*,fakultas.*,driver.*,mobil.*, order_sewa.status as status_order, DATEDIFF(tgl_pergi,
+		return $this->db->query("SELECT order_sewa.*,fakultas.*,driver.*,mobil.*,feedback_driver.*, order_sewa.status as status_order, DATEDIFF(tgl_pergi,
 									CURRENT_DATE()) as daysRemaining FROM order_sewa
 								 JOIN fakultas ON order_sewa.id_fakultas = fakultas.fakultas_id
 								 LEFT JOIN driver ON order_sewa.id_driver = driver.id_driver
 								 LEFT JOIN mobil ON order_sewa.id_mobil = mobil.id_mobil
+								 LEFT JOIN feedback_driver ON order_sewa.id_order = feedback_driver.id_order
 								 WHERE id_fakultas = '$id_fakultas'
 								 ORDER BY tgl_pergi DESC
 								")->result();
@@ -171,7 +172,7 @@ class Sewa_Model extends CI_Model {
 
     public function getRequestsTotal()
 	{
-		return $this->db->query("SELECT COUNT(id_order) as jmlRequest FROM order_sewa WHERE status = '0' AND stat_adm='0' AND stat_drv='0' AND stat_cst='0'")->row();
+		return $this->db->query("SELECT COUNT(id_order) as jmlRequest FROM order_sewa WHERE status = '0' AND stat_adm='0'")->row();
 	}
 
 	public function getApprovedTotal()

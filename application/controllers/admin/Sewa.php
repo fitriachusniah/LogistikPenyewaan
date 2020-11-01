@@ -33,6 +33,9 @@ class Sewa extends CI_Controller {
 		$tgl_pulang = $this->input->post('tgl_pulang');
 		//echo "$tgl_pergi";
 		$this->db->query("UPDATE order_sewa SET tgl_pergi = '$tgl_pergi', tgl_pulang = '$tgl_pulang' WHERE id_order = '$id'");
+		$notif_message = "Tanggal berhasil diubah";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Sewa', 'refresh');
 	}
 
@@ -86,7 +89,9 @@ class Sewa extends CI_Controller {
 		);
 
 		$this->Sewa_Model->terima_data($data,$id_order);
-
+		$notif_message = "Permintaan Peminjaman Mobil Diterima";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Sewa', 'refresh');
 
 	}
@@ -111,6 +116,9 @@ class Sewa extends CI_Controller {
 			'id_fakultas'       => $id_fakultas,
 		);
 		$this->Sewa_Model->input_data($data,'order_sewa');
+		$notif_message = "Permintaan Peminjaman Mobil Ditambahkan";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Sewa', 'refresh');
 
 	}
@@ -118,6 +126,9 @@ class Sewa extends CI_Controller {
 
 	function tolak($id){
 		$this->db->query("UPDATE order_sewa SET stat_adm = 5 WHERE id_order = '$id'");
+		$notif_message = "Permintaan Peminjaman Mobil Ditolak";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Sewa', 'refresh');
 	}
 
@@ -125,6 +136,9 @@ class Sewa extends CI_Controller {
 		$cost = $this->input->post('cost');
 		$sppd = $this->input->post('sppd');
 		$this->db->query("UPDATE order_sewa SET status = 1, cost = '$cost', sppd = '$sppd' WHERE id_order = '$id'");
+		$notif_message = "Perjalanan selesai, trip closed";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Sewa/Sewa_Menunggu_Perjalanan', 'refresh');
 	}
 

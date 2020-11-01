@@ -65,6 +65,9 @@ class Dashboard extends CI_Controller {
 		$this->db->query("UPDATE order_sewa SET stat_drv = 1 WHERE id_order = '$id'");
 		$this->db->query("UPDATE mobil SET km_awal = '$km_awal' WHERE id_mobil = '$id_mobil'");
 
+		$notif_message = "Perjalanan berhasil diterima";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('driver/Dashboard', 'refresh');
 	}
 
@@ -77,6 +80,9 @@ class Dashboard extends CI_Controller {
 		$this->db->query("UPDATE order_sewa SET stat_drv = 5, stat_adm = 0, id_driver = 0 WHERE id_order = '$id'");
 		$this->db->query("INSERT INTO decline_reason(id_order, id_driver, alasan) VALUES ('$id','$id_driver','$alasan')");
 
+		$notif_message = "Perjalanan berhasil ditolak";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('driver/Dashboard/ditolak', 'refresh');
 		//print_r($order);
 
@@ -88,6 +94,10 @@ class Dashboard extends CI_Controller {
 
 		$this->db->query("UPDATE order_sewa SET stat_drv = 2 WHERE id_order = '$id'");
 		$this->db->query("UPDATE mobil SET km_akhir = '$km_akhir' WHERE id_mobil = '$id_mobil'");
+
+		$notif_message = "Perjalanan selesai, trip closed";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('driver/Dashboard/Selesai', 'refresh');
 	}
 
@@ -100,7 +110,7 @@ class Dashboard extends CI_Controller {
 			'foto_driver'		  => $driver->foto_driver,
 			'user_id'			  => $driver->user_id,
 			'user_name'			  => $driver->user_name,
-			'password'			  => $driver->user_password,
+			'user_password'			  => $driver->user_password,
 			'edit_action'   => base_url('driver/Dashboard/driver_edit_profile'),
 		);
 		$this->load->view('driver/Update_Profile',$data);
@@ -117,9 +127,15 @@ class Dashboard extends CI_Controller {
 		$driver_username  = $this->input->post('user_name');
 		$driver_password  = $this->input->post('user_password');
 
+
+		if($driver_password==''){
+			$new_psw = $this->input->post('old_psw');
+ 		}else{
+ 			$new_psw = md5($driver_password);
+ 		}
 		$driver_user = array(
 			'user_name'			=> $driver_username,
-			'user_password'		=> md5($driver_password),
+			'user_password'		=> $new_psw,
 		);
 
 		$this->Users_Model->edit_data($driver_user,$driver_userid);
@@ -150,8 +166,9 @@ class Dashboard extends CI_Controller {
 
 		$this->Drivers_Model->edit_data($data,$id_driver);
 
-
-		// print_r($data);
+		$notif_message = "Profile berhasil diubah";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('driver/Dashboard', 'refresh');
 	}
 

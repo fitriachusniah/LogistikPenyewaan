@@ -7,7 +7,8 @@
 		<title><?= $title ?></title>
 		<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet">
 		<link href="<?= base_url() ?>assets/css/themes/lite-purple.min.css" rel="stylesheet">
-		<link rel="manifest" href="manifest.webmanifest">
+		<link href="<?= base_url() ?>assets/css/plugins/toastr.min.css" rel="stylesheet">
+		<link rel="manifest" href="<?= base_url('manifest.webmanifest') ?>">
 	</head>
 	<body>
 		<div class="auth-layout-wrap" style="background-image: url(<?= base_url() ?>assets/images/photo-wide-5.jpg)">
@@ -34,21 +35,25 @@
 								</form>
 							</div>
 						</div>
-					</div>
-						<!-- <div class="col-md-6 text-center" style="background-size: cover;background-image: url(<?= base_url() ?>assets/images/photo-wide-6.jpeg)"> -->
 						<div class="col-md-6 text-center">
 							<div class="pr-3 auth-right">
 								<div class="auth-logo text-center mb-4"><img src="<?= base_url() ?>assets/images/telkom.png" alt=""></div>
 								<center><h4><b>Sistem Informasi Penyewaan Mobil</b></h4><h5>Direktorat Logistik dan Aset Universitas Telkom</h5></center><br>
 							</div>
 						</div>
+					</div>
 			</div>
 		</div>
 		</div>
 
+		 	<!-- <script src="<?= base_url() ?>assets/js/plugins/jquery-3.3.1.min.js"></script>
+		 	<script src="<?= base_url() ?>assets/js/plugins/toastr.min.js"></script> -->
+
 		<script type="text/javascript">
-			document.addEventListener("DOMContentLoaded", function(event) {
+				document.addEventListener("DOMContentLoaded", function(event) {
 				// Register service worker to control making site work offline
+
+				// toastr.success('Are you the 6 fingered man?');
 
 				if('serviceWorker' in navigator) {
 				  navigator.serviceWorker

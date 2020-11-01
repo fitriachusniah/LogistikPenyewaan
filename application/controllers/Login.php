@@ -58,12 +58,12 @@ class Login extends CI_Controller {
 							'id' 			=> $driver->id_driver,
 							'name' 			=> $driver->nama_driver,
 							'status'		=> 'login',
-							'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_masuk($driver->id_driver),
+							// 'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_masuk($driver->id_driver),
 						);
 
 						$this->session->set_userdata($data_session);
-						$this->load->view('driver/Dashboard',$data_session);
-						// redirect(base_url().'driver/Dashboard','refresh');
+						// $this->load->view('driver/Dashboard',$data_session);
+						redirect(base_url().'driver/Dashboard','refresh');
 					}
 			}else if($cek->role_id == '3'){
 
@@ -87,13 +87,13 @@ class Login extends CI_Controller {
 							'id' 			=> $fakultas->fakultas_id,
 							'name' 			=> $fakultas->nama_fakultas,
 							'status'		=> 'login',
-							'sewa_action'  => base_url('konsumen/Sewa/add'),
-							'cek_pinjaman'  => $x,
+							// 'sewa_action'  => base_url('konsumen/Sewa/add'),
+							// 'cek_pinjaman'  => $x,
 						);
 
 						$this->session->set_userdata($data_session);
-						$this->load->view('konsumen/Dashboard',$data_session);
-						// redirect(base_url().'konsumen/Dashboard','refresh');
+						// $this->load->view('konsumen/Dashboard',$data_session);
+						redirect(base_url().'konsumen/Dashboard','refresh');
 					}
 			}
 		}else{

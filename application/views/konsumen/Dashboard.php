@@ -15,9 +15,9 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                   <center>
-                                    <?php 
+                                    <?php
                                         if($cek_pinjaman==0){
-                                    ?>  
+                                    ?>
                                             <button class="btn btn-primary btn-rounded" type="button" data-toggle="modal" data-target="#addSewa" style="padding: 25px 40px; font-weight: 50%">
                                             Ajukan Permintaan Pinjam Mobil
                                              </button>
@@ -31,16 +31,16 @@
                                     <?php
                                         }
                                     ?>
-                                        
+
                                  </center>
                             </div>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
 
-             
+
                 <div class="row">
-                   
+
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
                             <div class="card-body text-center"><i class="i-Add-User"></i>
@@ -82,8 +82,8 @@
                         </div>
                     </div>
                 </div>
-                
-               
+
+
               <!-- end of main-content -->
           </div>
 
@@ -108,20 +108,17 @@
                                                         <div class="form-group">
                                                             <label for="">Tanggal dan Jam Berangkat*</label>
                                                              <?php $datetime = new DateTime('now');
-                                                                    $min_date = $datetime->format('Y-m-d');
-                                                                    $max_date = strtotime("+7 day", time());
+                                                                    $min_date = date('Y-m-d\TH:i', strtotime("now"));
+                                                                    $max_date = date('Y-m-d\TH:i', strtotime("+7 day"));
+                                                                    echo $max_date;
                                                               ?>
-                                                            <input name="tgl_pergi" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>"  required />
+                                                            <input name="tgl_pergi" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>" max="<?= $max_date ?>"  required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="">Tanggal dan Jam Pulang*</label>
-                                                             <?php $datetime = new DateTime('now');
-                                                                    $min_date = $datetime->format('Y-m-d');
-                                                                    $max_date = strtotime("+7 day", time());
-                                                              ?>
-                                                            <input name="tgl_pulang" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>"  required />
+                                                            <input name="tgl_pulang" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>" max="<?= $max_date ?>" required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -148,8 +145,8 @@
                                                             <textarea name="note" class="form-control form-control-rounded"></textarea>
                                                         </div>
                                                     </div>
-                                                                                                   
-                                                
+
+
                                             </div>
                                             <b>isian bertanda (*) harus diisi</b>
 

@@ -24,10 +24,10 @@
                                     <?php
                                         }else{
                                     ?>
-                                            <button disabled class="btn btn-primary btn-rounded" type="button" data-toggle="modal" data-target="#addSewa" style="padding: 25px 40px; font-weight: 50%">
-                                            Ajukan Permintaan Pinjam Mobil
+                                            <button disabled class="btn btn-default btn-rounded" type="button" data-toggle="modal" data-target="#addSewa" style="padding: 25px 40px; font-weight: 50%; color:#000;">
+                                            Anda tidak dapat meminjam Mobil
                                             </button><br>
-                                            *Close Peminjaman Terakhir dan Beri Penilaian Kepada Driver Untuk Dapat Melakukan Peminjaman Mobil.
+
                                     <?php
                                         }
                                     ?>
@@ -41,46 +41,47 @@
 
                 <div class="row">
 
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                   <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
-                            <div class="card-body text-center"><i class="i-Add-User"></i>
+                            <div class="card-body text-center"><i class="i-Stopwatch"></i>
                                 <div class="content">
-                                    <p class="text-muted mt-2 mb-0">Customers</p>
-                                    <p class="text-primary text-24 line-height-1 mb-2">1000</p>
+                                    <p class="text-muted mt-2 mb-0">Belum Disetujui</p>
+                                    <p class="text-primary text-24 line-height-1 mb-2"><?= $belum_disetujui_admin->jmlBlmDisetujui ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
-                            <div class="card-body text-center"><i class="i-Financial"></i>
+                            <div class="card-body text-center"><i class="i-Yes"></i>
                                 <div class="content">
-                                    <p class="text-muted mt-2 mb-0">Sales</p>
-                                    <p class="text-primary text-24 line-height-1 mb-2">$4021</p>
+                                    <p class="text-muted mt-2 mb-0">Sudah Disetujui</p>
+                                    <p class="text-primary text-24 line-height-1 mb-2"><?= $disetujui_admin->jmlDisetujui ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
-                            <div class="card-body text-center"><i class="i-Checkout-Basket"></i>
+                            <div class="card-body text-center"><i class="i-Car-2"></i>
                                 <div class="content">
-                                    <p class="text-muted mt-2 mb-0">Orders</p>
-                                    <p class="text-primary text-24 line-height-1 mb-2">80</p>
+                                    <p class="text-muted mt-2 mb-0">Perjalanan Selesai</p>
+                                    <p class="text-primary text-24 line-height-1 mb-2"><?= $selesai->jmlSelesai ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
-                            <div class="card-body text-center"><i class="i-Money-2"></i>
+                            <div class="card-body text-center"><i class="i-Close"></i>
                                 <div class="content">
-                                    <p class="text-muted mt-2 mb-0">Expense</p>
-                                    <p class="text-primary text-24 line-height-1 mb-2">$1200</p>
+                                    <p class="text-muted mt-2 mb-0">Peminjaman Ditolak</p>
+                                    <p class="text-primary text-24 line-height-1 mb-2"><?= $ditolak->jmlDitolak ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
 

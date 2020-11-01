@@ -22,7 +22,7 @@ class Fakultas extends CI_Controller {
 			'edit_action' => base_url('admin/Fakultas/edit'),
 			'fakultas'     => $this->Fakultas_Model->list()
 		);
-		//print_r($_SESSION);
+
 		$this->load->view('admin/Fakultas',$data);
 	}
 
@@ -54,8 +54,12 @@ class Fakultas extends CI_Controller {
 
 
 		$this->Fakultas_Model->input_data($data,'fakultas');
+
+		$notif_message = "Data Fakultas berhasil ditambahkan";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Fakultas', 'refresh');
-		
+
 	}
 
 	function edit($id){
@@ -72,6 +76,11 @@ class Fakultas extends CI_Controller {
 			'no_hp' 		=> $no_hp,
 		);
 		$this->Fakultas_Model->edit_data($data,$id_fakultas);
+
+
+		$notif_message = "Data Fakultas berhasil diubah";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Fakultas', 'refresh');
 	}
 
@@ -79,6 +88,10 @@ class Fakultas extends CI_Controller {
 	public function hapus($id)
 	{
 		$this->Fakultas_Model->delete_data($id);
+
+		$notif_message = "Data Fakultas berhasil dihapus";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Fakultas','refresh');
 	}
 }

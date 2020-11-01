@@ -4,7 +4,7 @@
 <div class="main-content-wrap d-flex flex-column">
 	<div class="main-content">
 		<div class="breadcrumb">
-			<h1 class="mr-2">Waiting Driver</h1>
+			<h1 class="mr-2">Menunggu Driver</h1>
 			<ul>
 				<li>Permintaan</li>
 				<li>Peminjaman Mobil</li>
@@ -40,7 +40,7 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
 													<?php
-													        if($value->status_order==1){
+													        if($value->stat_adm==1 && $value->stat_drv==0 && $value->stat_cst==0){
 													?>
 													            <span class="badge badge-warning">Diterima,Menunggu Konfirmasi Driver</span>
 													<?php
@@ -108,7 +108,7 @@
 				<div class="modal-body">
 				
 				<?php
-				        if($key->status_order==1){
+				        if($key->stat_adm==1 && $key->stat_drv==0 && $key->stat_cst==0){
 				?>
 				            <span class="badge badge-warning">Diterima,Menunggu Konfirmasi Driver</span>
 				<?php

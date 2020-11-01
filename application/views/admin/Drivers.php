@@ -36,6 +36,7 @@
 										<th class="text-center" style="width: 5%">#</th>
 										<th>Nama Driver</th>
 										<th>No. HP</th>
+										<th>Rating</th>
 										<th>Status</th>
 										<th class="text-center">Action</th>
 									</tr>
@@ -49,6 +50,7 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td><?= $value->nama_driver ?></td>
 											<td><?= $value->no_hp ?></td>
+											<td><?= number_format($value->avg_rating,2) ?></td>
 											<td><b>
 												 <?php
 				                                        if($value->status==1){

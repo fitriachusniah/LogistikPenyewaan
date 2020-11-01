@@ -1,13 +1,12 @@
-<?php $this->load->view('driver/_partials/header'); ?>
+<?php $this->load->view('admin/_partials/header'); ?>
 
 <!-- ============ Body content start ============= -->
 <div class="main-content-wrap d-flex flex-column">
 	<div class="main-content">
 		<div class="breadcrumb">
-			<h1 class="mr-2">Trip Selesai</h1>
+			<h1 class="mr-2"><?= $name ?></h1>
 			<ul>
-				<li>Permintaan</li>
-				<li>Peminjaman Mobil</li>
+				<li>SEMUA PERJALANAN SELESAI</li>
 			</ul>
 		</div>
 		<div class="separator-breadcrumb border-top"></div>
@@ -23,27 +22,24 @@
 								<thead>
 									<tr>
 										<th class="text-center" style="width: 5%">#</th>
-										<th style="width: 15%">Status</th>
 										<th style="width: 15%">Tgl Keberangkatan</th>
 										<th style="width: 20%">Fakultas</th>
-										<th style="width: 10%">Jml Orang</th>
+										<th style="width: 10%">SPPD</th>
+										<th style="width: 10%">Rating</th>
 										<th class="text-center">Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
 									$no = 1;
-									foreach ($list_sewa_masuk as $value) { ?>
+									foreach ($drivers_detail_trips as $value) { ?>
 
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
-											<td>
-													 <span class="badge badge-success">Selesai</span>
-												
-											</td>
 											<td><?php $time = strtotime($value->tgl_pergi);				echo date('d F Y - H:i', $time); ?></td>
 											<td><?= $value->nama_fakultas ?></td>
-											<td><?= $value->jml_penumpang ?> org</td>
+											<td>Rp<?= number_format($value->sppd,2) ?></td>
+											<td><b><?= number_format($value->avg_rating,2) ?></b></td>
 											<td class="text-center">												
 												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
 													<i class="nav-icon i-Eye font-weight-bold">Detail</i>
@@ -79,23 +75,28 @@
 </div>
 
 
-<?php foreach ($list_sewa_masuk as $key) { ?>
+<?php foreach ($drivers_detail_trips as $key) { ?>
 	<div class="modal fade" id="detail<?= $key->id_order ?>" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="ExampleModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="ExampleModalLabel">Detail Permintaan</h4>
+					<h4 class="modal-title" id="ExampleModalLabel">Detail Peminjaman</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 				
-				 <span class="badge badge-success">Selesai</span>
+				<span class="badge badge-success">Selesai</span>
 				        
 				<table>
 						<tr>
-							<td>Fakultas Pemohon</td>
+							<td>KAUR Fakultas</td>
+							<td>:</td>
+							<td><?= $key->nama_kaur.' - '.$key->jabatan ?></td>
+						</tr>
+						<tr>
+							<td>Fakultas</td>
 							<td>:</td>
 							<td><?= $key->nama_fakultas ?></td>
 						</tr>
@@ -136,6 +137,20 @@
 							<td>Keperluan</td>
 							<td>:</td>
 							<td><?= $key->keterangan ?></td>
+						</tr>
+						<tr>
+							<td>Catatan Khusus</td>
+							<td>:</td>
+							<td>
+								<?php 
+									if($key->note != Null){
+										echo $key->note;	
+									}else{
+										echo "-";
+									}
+								?>
+
+							</td>
 						</tr>
 						<tr>
 							<td>Mobil</td>
@@ -193,6 +208,20 @@
 
 							</td>
 						</tr>
+						
+                    						<tr>
+												<td><b>Rating</b></td>
+												<td>:</td>
+												<td><?= number_format($key->rating,2) ?></td>
+											</tr>
+											<tr>
+												<td><b>Komentar</b></td>
+												<td>:</td>
+												<td><?= $key->komentar ?></td>
+											</tr>
+                    					
+                    			
+						
 					</table>
 					
 				</div>
@@ -246,4 +275,4 @@
 <!-- ============ Search UI End ============= -->
 
 
-<?php $this->load->view('driver/_partials/js'); ?>
+<?php $this->load->view('admin/_partials/js'); ?>

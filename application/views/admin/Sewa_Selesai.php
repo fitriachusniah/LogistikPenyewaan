@@ -38,14 +38,7 @@
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
-													<?php
-													        if($value->status_order==3){
-													?>
-													            <span class="badge badge-success">Selesai</span>
-													<?php
-													        }
-													?>
-												
+												<span class="badge badge-success">Selesai</span>												
 											</td>
 											<td><?php $time = strtotime($value->tgl_pergi);				echo date('d F Y - H:i', $time); ?></td>
 											<td><?= $value->nama_fakultas ?></td>
@@ -97,13 +90,7 @@
 				</div>
 				<div class="modal-body">
 				
-				<?php
-				        if($key->status_order==3){
-				?>
-				            <span class="badge badge-success">Selesai</span>
-				<?php
-				        }
-				?>
+				<span class="badge badge-success">Selesai</span>
 				        
 				<table>
 						<tr>
@@ -224,6 +211,25 @@
 
 							</td>
 						</tr>
+						<?php
+                    				if($key->id_feedback==True){
+                    			?>
+
+                    					
+                    						<tr>
+												<td><b>Rating</b></td>
+												<td>:</td>
+												<td><?= number_format($key->rating,2) ?></td>
+											</tr>
+											<tr>
+												<td><b>Komentar</b></td>
+												<td>:</td>
+												<td><?= $key->komentar ?></td>
+											</tr>
+                    					
+                    			<?php
+                    				}
+                    			?>
 						
 					</table>
 					

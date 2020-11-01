@@ -72,7 +72,7 @@
 
 							</div>
 							<div class="modal-footer">
-								<button type="submit" class="btn btn-primary ml-2">Save changes</button>
+								<button type="submit" class="btn btn-primary ml-2">Terima Permintaan</button>
 							</div>
 						</form>
 					</div>

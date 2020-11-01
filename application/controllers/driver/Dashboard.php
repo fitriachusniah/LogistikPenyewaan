@@ -62,7 +62,7 @@ class Dashboard extends CI_Controller {
 		$order = $this->db->query("SELECT * FROM order_sewa WHERE id_order = '$id'")->row();
 		$id_mobil = $order->id_mobil;
 
-		$this->db->query("UPDATE order_sewa SET status = 2 WHERE id_order = '$id'");
+		$this->db->query("UPDATE order_sewa SET stat_drv = 1 WHERE id_order = '$id'");
 		$this->db->query("UPDATE mobil SET km_awal = '$km_awal' WHERE id_mobil = '$id_mobil'");
 
 		redirect('driver/Dashboard', 'refresh');
@@ -74,7 +74,7 @@ class Dashboard extends CI_Controller {
 		$order = $this->db->query("SELECT * FROM order_sewa WHERE id_order = '$id'")->row();
 		$id_driver = $order->id_driver;
 
-		$this->db->query("UPDATE order_sewa SET status = 0, id_driver = 0 WHERE id_order = '$id'");
+		$this->db->query("UPDATE order_sewa SET stat_drv = 5, stat_adm = 0, id_driver = 0 WHERE id_order = '$id'");
 		$this->db->query("INSERT INTO decline_reason(id_order, id_driver, alasan) VALUES ('$id','$id_driver','$alasan')");
 
 		redirect('driver/Dashboard/ditolak', 'refresh');
@@ -86,7 +86,7 @@ class Dashboard extends CI_Controller {
 
 		$km_akhir = $this->input->post('km_akhir');
 
-		$this->db->query("UPDATE order_sewa SET status = 6 WHERE id_order = '$id'");
+		$this->db->query("UPDATE order_sewa SET stat_drv = 2 WHERE id_order = '$id'");
 		$this->db->query("UPDATE mobil SET km_akhir = '$km_akhir' WHERE id_mobil = '$id_mobil'");
 		redirect('driver/Dashboard/menunggu_perjalanan', 'refresh');
 	}

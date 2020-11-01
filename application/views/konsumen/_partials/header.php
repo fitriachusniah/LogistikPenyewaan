@@ -26,13 +26,15 @@
 
       @media only screen and (min-width: 100px) {
         .rate-bintang{
-          font-size: 50px;          
+          font-size: 50px;
         }
       }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="text-left">
+<?php echo $this->session->flashdata('notifikasi'); ?>
 <?php
 	$this->load->view('konsumen/_partials/layout');
 	$this->load->view('konsumen/_partials/navbar');

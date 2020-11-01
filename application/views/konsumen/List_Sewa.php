@@ -40,6 +40,8 @@
 												<?php
 													if($value->daysRemaining<0){
 														echo "passed";
+													}else if($value->daysRemaining==0){
+														echo "hari ini";
 													}else{
 														echo $value->daysRemaining." days";
 													}
@@ -49,25 +51,29 @@
 											<td><?= $value->tujuan ?></td>
 											<td><b>
 												 <?php
-				                                        if($value->status_order==0){
+				                                        if($value->stat_adm==0 && $value->stat_drv==0 && $value->stat_cst==0){
 				                                      ?>
-				                                          <span class="badge badge-warning">Menunggu Konfirmasi Admin</span>
+				                                          <span class="badge badge-warning">Belum Disetujui</span>
 				                                       <?php
-				                                        }else if($value->status_order==1){
+				                                        }else if($value->stat_adm==1 && $value->stat_drv==0 && $value->stat_cst==0){
 				                                      ?>
-				                                          <span class="badge badge-warning">Menunggu Konfirmasi Driver</span>
+				                                          <span class="badge badge-success">Disetujui Admin</span>
 				                                      <?php
-				                                        }else if($value->status_order==2){
+				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
 				                                       ?>
-				                                          <span class="badge badge-success">Menunggu Perjalanan</span>
+				                                          <span class="badge badge-warning">Sedang Perjalanan</span>
 				                                      <?php
-				                                        }else if($value->status_order==3 || $value->status_order==4 || $value->status_order==6){
+				                                        }else if($value->status==1 && $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
+				                                      ?>
+				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
+				                                      <?php
+				                                        }else if($value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
 				                                      ?>
 				                                          <span class="badge badge-success">Selesai</span>
 				                                      <?php
-				                                        }else{
+				                                        }else if($value->stat_adm==5){
 				                                      ?>
-				                                      	  <span class="badge badge-danger">Ditolak</span>
+				                                      	  <span class="badge badge-danger">Permintaan Ditolak</span>
 				                                      <?php
 				                                        }
 				                                      ?>
@@ -78,10 +84,16 @@
 													<i class="nav-icon i-Eye font-weight-bold">Detail</i>
 												</a>
 												<?php
-				                                      if($value->status_order==2 OR $value->status_order==6){
+				                                      if($value->status==0 && $value->stat_drv==1 && $value->stat_cst==0){
 				                                       ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
-															<i class="nav-icon i-Yes font-weight-bold">Perjalanan Selesai</i>
+															<i class="nav-icon i-Yes font-weight-bold">Close Trip</i>
+														</a>
+				                                      <?php
+				                                        }else if($value->status==1 && $value->stat_drv==2 && $value->stat_cst==0){
+				                                      ?>
+				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
+															<i class="nav-icon i-Yes font-weight-bold">Beri Rating</i>
 														</a>
 				                                      <?php
 				                                        }
@@ -128,71 +140,112 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<?php
-				        if($key->status_order==0){
-				?>
-				            <span class="badge badge-warning">Perlu Konfirmasi</span>
-				<?php
-				        }else if($key->status_order==1){
-				?>
-				            <span class="badge badge-warning">Diterima,Menunggu Konfirmasi Driver</span>
-				<?php
-				        }else if($key->status_order==2){
-				?>
-				        	<span class="badge badge-success">Menunggu Perjalanan</span>
-				<?php
-				        }else if($value->status_order==3 || $value->status_order==4 || $value->status_order==6){
-				?>
-				             <span class="badge badge-success">Selesai</span>
-				<?php
-				        }else{
-				?>
-				         	 <span class="badge badge-danger">Ditolak</span>
-				<?php
-				        }
-				 ?>
+					 <?php
+				                                        if($value->stat_adm==0 && $value->stat_drv==0 && $value->stat_cst==0){
+				                                      ?>
+				                                          <span class="badge badge-warning">Belum Disetujui</span>
+				                                       <?php
+				                                        }else if($value->stat_adm==1 && $value->stat_drv==0 && $value->stat_cst==0){
+				                                      ?>
+				                                          <span class="badge badge-success">Disetujui Admin</span>
+				                                      <?php
+				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
+				                                       ?>
+				                                          <span class="badge badge-warning">Sedang Perjalanan</span>
+				                                      <?php
+				                                        }else if($value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
+				                                      ?>
+				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
+				                                      <?php
+				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1){
+				                                      ?>
+				                                          <span class="badge badge-success">Selesai</span>
+				                                      <?php
+				                                        }else if($value->stat_adm==5){
+				                                      ?>
+				                                      	  <span class="badge badge-danger">Ditolak</span>
+				                                      <?php
+				                                        }
+				                                      ?>
 
 				<table>
-						<tr>
-							<td colspan="3">
-								<center>
-								<?php
-		                          if (!$key->foto_driver) { ?>
+						<?php
+							if($key->stat_adm!=0 && $key->stat_drv!=0){
+						?>
 
-		                         <?php } else { ?>
-		                          <img src="<?= base_url()?>assets/foto_driver/<?=$key->foto_driver ?>"  width='100px'>
-		                        <?php } ?>
-		                        </center>
-							</td>
-						</tr>
-						<tr>
-							<td><b>Driver</b></td>
-							<td>:</td>
-							<td>
-								<?php
-									if($key->id_driver != Null){
-										echo "<b>".$key->nama_driver."</b>";
-									}else{
-										echo "-";
-									}
-								?>
+							<tr>
+								<td colspan="3">
+									<center>
+									<?php
+			                          if (!$key->foto_driver) { ?>
 
-							</td>
-						</tr>
-						<tr>
-							<td><b>No.HP Driver</b></td>
-							<td>:</td>
-							<td>
-								<?php
-									if($key->id_driver != Null){
-										echo "<b>".$key->no_hp."</b>";
-									}else{
-										echo "-";
-									}
-								?>
+			                         <?php } else { ?>
+			                          <img src="<?= base_url()?>assets/foto_driver/<?=$key->foto_driver ?>"  width='100px'>
+			                        <?php } ?>
+			                        </center>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Driver</b></td>
+								<td>:</td>
+								<td>
+									<?php
+										if($key->id_driver != Null){
+											echo "<b>".$key->nama_driver."</b>";
+										}else{
+											echo "-";
+										}
+									?>
 
-							</td>
-						</tr>
+								</td>
+							</tr>
+							<tr>
+								<td><b>No.HP Driver</b></td>
+								<td>:</td>
+								<td>
+									<?php
+										if($key->id_driver != Null){
+											echo "<b>".$key->no_hp."</b>";
+										}else{
+											echo "-";
+										}
+									?>
+
+								</td>
+							</tr>
+							<tr>
+								<td>Mobil</td>
+								<td>:</td>
+								<td>
+									<?php
+										if($key->id_mobil != Null){
+											echo $key->merk_mobil;
+										}else{
+											echo "-";
+										}
+									?>
+
+								</td>
+							</tr>
+
+							<tr>
+								<td>Cost Perjalanan</td>
+								<td>:</td>
+								<td>
+									<?php
+										if($key->cost != Null){
+											echo "Rp".number_format($key->cost,2);
+										}else{
+											echo "-";
+										}
+									?>
+
+								</td>
+							</tr>
+						<?php
+							}
+
+						?>
 						<tr>
 							<td>Tgl Keberangkatan</td>
 							<td>:</td>
@@ -245,35 +298,6 @@
 
 							</td>
 						</tr>
-						<tr>
-							<td>Mobil</td>
-							<td>:</td>
-							<td>
-								<?php
-									if($key->id_mobil != Null){
-										echo $key->merk_mobil;
-									}else{
-										echo "-";
-									}
-								?>
-
-							</td>
-						</tr>
-
-						<tr>
-							<td>Cost Perjalanan</td>
-							<td>:</td>
-							<td>
-								<?php
-									if($key->cost != Null){
-										echo "Rp".number_format($key->cost,2);
-									}else{
-										echo "-";
-									}
-								?>
-
-							</td>
-						</tr>
 
 					</table>
 
@@ -319,9 +343,6 @@
             <input type="hidden" name="status_order" id="status-<?= $key->id_order ?>" value="<?= $key->status_order ?>">
 					</div>
 					<div class="modal-footer justify-content-between">
-						<button class="btn btn-secondary" type="button" data-dismiss="modal">
-							Close
-						</button>
 						<button type="submit" class="btn btn-primary ml-2">Save changes</button>
 					</div>
 				</form>

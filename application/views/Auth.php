@@ -38,7 +38,7 @@
 						<div class="col-md-6 text-center">
 							<div class="pr-3 auth-right">
 								<div class="auth-logo text-center mb-4"><img src="<?= base_url() ?>assets/images/telkom.png" alt=""></div>
-								<center><h4><b>Sistem Informasi Penyewaan Mobil</b></h4><h5>Direktorat Logistik dan Aset Universitas Telkom</h5></center><br>
+								<center><h4><b>Sistem Informasi <br>Peminjaman Mobil</b></h4><h5>Direktorat Logistik dan Aset Universitas Telkom</h5></center><br>
 							</div>
 						</div>
 					</div>

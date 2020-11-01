@@ -16,10 +16,20 @@ class Login extends CI_Controller {
 	{
 		$data = [
 			'title'	=> 'Auth',
-			'info' => ''
+			'info' => '',
+			'edit' => base_url('Login/lupa_password')
 		];
 		$this->load->view('Auth', $data);
 	}
+
+	public function lupa_password()
+	{
+		$username = $this->input->post('user_name');
+		$password = $this->input->post('user_password');
+
+		echo $password;
+	}
+
 
 	public function login()
 	{

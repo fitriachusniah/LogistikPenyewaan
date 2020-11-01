@@ -36,7 +36,7 @@
 										<th class="text-center" style="width: 5%">#</th>
 										<th>Nama Driver</th>
 										<th>No. HP</th>
-										<th>Rating</th>
+										<th>Rating(1-5)</th>
 										<th>Status</th>
 										<th class="text-center">Action</th>
 									</tr>

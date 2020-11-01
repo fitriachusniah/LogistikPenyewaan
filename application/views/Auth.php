@@ -31,6 +31,9 @@
 										<label for="password">Password</label>
 										<input name="user_password" class="form-control form-control-rounded" id="password" type="password">
 									</div>
+									<!-- <a class="text-success mr-2" href="#" data-toggle="modal" data-target="#editplg">
+															Lupa Password?
+														</a> -->
 									<button type="submit" class="btn btn-rounded btn-primary btn-block mt-2">Sign In</button>
 								</form>
 							</div>
@@ -38,13 +41,15 @@
 						<div class="col-md-6 text-center">
 							<div class="pr-3 auth-right">
 								<div class="auth-logo text-center mb-4"><img src="<?= base_url() ?>assets/images/telkom.png" alt=""></div>
-								<center><h4><b>Sistem Informasi <br>Peminjaman Mobil</b></h4><h5>Direktorat Logistik dan Aset Universitas Telkom</h5></center><br>
+								<center><h4><b>Sistem Informasi Peminjaman Mobil</b></h4><h5>Direktorat Logistik dan Aset Universitas Telkom</h5></center><br>
 							</div>
 						</div>
 					</div>
 			</div>
 		</div>
 		</div>
+
+
 
 		 	<!-- <script src="<?= base_url() ?>assets/js/plugins/jquery-3.3.1.min.js"></script>
 		 	<script src="<?= base_url() ?>assets/js/plugins/toastr.min.js"></script> -->
@@ -92,4 +97,42 @@
 			});
 		</script>
 	</body>
+	
 </html>
+
+
+		<div class="modal fade" id="editplg" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="ExampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="ExampleModalLabel">Edit Tanggal Pulang</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="<?= $edit_action ?>/<?= $key->id_order?>" method="post">
+					<div class="modal-body">
+						
+						 <div class="col-md-12">
+	                                                        <div class="form-group">
+	                                                        	<h6><b>Pulang</b> pada tanggal : <b><?php $time = strtotime($key->tgl_pulang);echo date('d F Y - H:i', $time); ?></b></h6>
+	                                                            <label for="">Ubah Tanggal dan Jam Pulang*</label>
+	                                                             <?php $datetime = new DateTime('now');
+	                                                                    $min_date = $datetime->format('Y-m-d');
+	                                                                    $max_date = strtotime("+7 day", time());
+	                                                              ?>
+	                                                            <input name="tgl_pulang" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>"  required/>
+	                                                        </div>
+	                                                    </div>
+	                                                   <input type="hidden" name="tgl_pergi" value="<?= $key->tgl_pergi ?>">
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="submit" class="btn btn-primary ml-2">Simpan Perubahan</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->

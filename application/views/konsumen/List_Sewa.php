@@ -214,26 +214,6 @@
 								</td>
 							</tr>
 
-							<?php
-                    				if($key->id_feedback==True){
-                    			?>
-
-                    					
-                    						<tr>
-												<td><b>Rating</b></td>
-												<td>:</td>
-												<td><?= number_format($key->rating,2) ?></td>
-											</tr>
-											<tr>
-												<td><b>Komentar</b></td>
-												<td>:</td>
-												<td><?= $key->komentar ?></td>
-											</tr>
-                    					
-                    			<?php
-                    				}
-                    			?>
-
 							<tr>
 								<td>Mobil</td>
 								<td>:</td>

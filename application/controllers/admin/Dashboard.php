@@ -56,7 +56,14 @@ class Dashboard extends CI_Controller {
 
 	public function tripDetail($id)
 	{
-		print_r($this->Drivers_Model->getDriverById($id));
+		$q = $this->db->query("SELECT nama_driver FROM driver WHERE id_driver='$id'")->row();
+		$data = array(
+			'drivers_detail_trips'     => $this->Drivers_Model->getDriverById($id),
+			'name' => $q->nama_driver
+		);
+		//print_r($data);
+		$this->load->view('admin/Driver_Trips_Detail',$data);
+		//print_r($this->Drivers_Model->getDriverById($id));
 	}
 
 

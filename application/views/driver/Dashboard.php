@@ -36,29 +36,7 @@
                                                 <tr>
                                                     <td style="text-align: center;"><?= $no++ ?></td>
                                                     <td><b>
-                                                      <?php
-                                                        if($value->status_order==0){
-                                                      ?>
-                                                          <span class="badge badge-warning">Perlu Konfirmasi</span>
-                                                      <?php
-                                                        }else if($value->status_order==1){
-                                                      ?>
-                                                          <span class="badge badge-warning">Menunggu Konfirmasi Driver</span>
-                                                      <?php
-                                                        }else if($value->status_order==2){
-                                                      ?>
-                                                          <span class="badge badge-success">Menunggu Perjalanan</span>
-                                                      <?php
-                                                        }else if($value->status_order==3){
-                                                       ?>
-                                                          <span class="badge badge-success">Selesai</span>
-                                                      <?php
-                                                        }else{
-                                                       ?>
-                                                          <span class="badge badge-danger">Ditolak</span>
-                                                       <?php
-                                                        }
-                                                      ?>  
+                                                            <span class="badge badge-warning">Menunggu Konfirmasi</span>
                                                         </b>
                                                     </td>
                                                     <td>
@@ -86,15 +64,7 @@
                                                     
                                                     </td>
                                                     <td class="text-center">
-                                                        <?php
-                                                            if($value->status_order==5 || $value->status_order==2){
-                                                        ?>
-                                                                <a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
-                                                                    <i class="nav-icon i-Eye font-weight-bold">Info</i>
-                                                                </a>
-                                                        <?php
-                                                            }else{
-                                                        ?>
+                                                       
                                                                 <a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
                                                                     <i class="nav-icon i-Eye font-weight-bold">Info</i>
                                                                 </a>
@@ -102,27 +72,19 @@
                                                                     date_default_timezone_set("Asia/Jakarta");
                                                                     $theDay = date("Y-m-d");
                                                                     $pergi = date('Y-m-d', strtotime($value->tgl_pergi));
-                                                                    if ($pergi!=$theDay) {
+                                                                    if ($pergi==$theDay) {
                                                                 ?>
-                                                                         <button disabled="" data-toggle="modal" data-target="#edit<?= $value->id_order ?>" class="btn btn-success ml-2">
+                                                                         <button data-toggle="modal" data-target="#edit<?= $value->id_order ?>" class="btn btn-success ml-2">
                                                                             <i class="nav-icon i-Yes font-weight-bold">Terima</i>
                                                                         </button>
                                                                 <?php
-                                                                    }else{
-                                                                ?>
-                                                                       <button data-toggle="modal" data-target="#edit<?= $value->id_order ?>" class="btn btn-success ml-2">
-                                                                            <i class="nav-icon i-Yes font-weight-bold">Terima</i>
-                                                                        </button>  
-                                                                <?php
                                                                     }
-                                                                 ?>
+                                                                ?>
                                                                
                                                                 <a class="text-danger mr-2" href="#" data-toggle="modal" href="#" data-target="#tolak<?= $value->id_order ?>">
                                                                     <i class="nav-icon i-Close-Window font-weight-bold">Tolak</i>
                                                                 </a>
-                                                        <?php   
-                                                            }
-                                                         ?>
+                                                    
                                                         
                                                     </td>
                                                 </tr>
@@ -207,9 +169,7 @@
                     <b>bertanda (*) harus diisi</b>
                     </div>
                     <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                                Close
-                            </button>
+                            
                             <button type="submit" class="btn btn-danger ml-2">Tolak</button>
                     </div>
                 </form>
@@ -246,9 +206,6 @@
                     <b>bertanda (*) harus diisi</b>
                 </div>
                 <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                            Close
-                        </button>
                         <button type="submit" class="btn btn-primary ml-2">Simpan</button>
                     </div>
                 </form>
@@ -273,29 +230,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?php
-                        if($key->status_order==0){
-                ?>
-                            <span class="badge badge-warning">Perlu Konfirmasi</span>
-                <?php
-                        }else if($key->status_order==1){
+                  <?php
+                        if($key->stat_adm==1 && $key->stat_drv==0 && $key->stat_cst==0){
                 ?>
                             <span class="badge badge-warning">Diterima,Menunggu Konfirmasi Driver</span>
                 <?php
-                        }else if($key->status_order==2){
-                ?>
-                            <span class="badge badge-warning">Menunggu Perjalanan</span>
-                <?php
-                        }else if($key->status_order==3){
-                ?>
-                            <span class="badge badge-success">Selesai</span>
-                <?php
-                        }else{
-                ?>
-                            <span class="badge badge-danger">Ditolak</span>
-                <?php
                         }
-                 ?>  
+                ?>
                     
                 <table>
                         <tr>

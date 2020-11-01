@@ -81,16 +81,11 @@ class Sewa extends CI_Controller {
 			'id_mobil' 		=> $id_mobil,
 			'id_driver'     => $id_driver,
 			'cost'			=> $cost,
-			'status'		=> 1,
+			'stat_adm'		=> 1,
+			'stat_drv'      => 0,
 		);
 
-		// $data2 = array(
-		// 	'status'		=> 0
-		// );
-
 		$this->Sewa_Model->terima_data($data,$id_order);
-		//$this->Cars_Model->edit_data($data2,$id_mobil);
-		//$this->Drivers_Model->edit_data($data2,$id_driver);
 
 		redirect('admin/Sewa', 'refresh');
 
@@ -122,14 +117,14 @@ class Sewa extends CI_Controller {
 
 
 	function tolak($id){
-		$this->db->query("UPDATE order_sewa SET status = 5 WHERE id_order = '$id'");
+		$this->db->query("UPDATE order_sewa SET stat_adm = 5 WHERE id_order = '$id'");
 		redirect('admin/Sewa', 'refresh');
 	}
 
 	function close_trip($id){
 		$cost = $this->input->post('cost');
 		$sppd = $this->input->post('sppd');
-		$this->db->query("UPDATE order_sewa SET status = 3, cost = '$cost', sppd = '$sppd' WHERE id_order = '$id'");
+		$this->db->query("UPDATE order_sewa SET status = 1, cost = '$cost', sppd = '$sppd' WHERE id_order = '$id'");
 		redirect('admin/Sewa/Sewa_Menunggu_Perjalanan', 'refresh');
 	}
 
@@ -145,6 +140,7 @@ class Sewa extends CI_Controller {
 			'list_sewa_masuk'     => $this->Sewa_Model->list_sewa_menunggu_perjalanan(),
 		);
 		$this->load->view('admin/Sewa_Menunggu_Perjalanan',$data);
+		//print_r($data);
 	}
 
 	function sewa_selesai(){

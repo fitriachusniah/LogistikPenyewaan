@@ -52,7 +52,7 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td><b>
 													  <?php
-				                                        if($value->status_order==0){
+				                                        if($value->stat_adm==0){
 				                                      ?>
 				                                          <span class="badge badge-warning">Perlu Konfirmasi</span>
 				                                      <?php
@@ -82,15 +82,7 @@
 											</td>
 											<td><?= $value->nama_fakultas ?></td>
 											<td class="text-center">
-												<?php
-													if($value->status_order==5 || $value->status_order==2){
-												?>
-														<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
-															<i class="nav-icon i-Eye font-weight-bold">Detail</i>
-														</a>
-												<?php
-													}else{
-												?>
+											
 														<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
 															<i class="nav-icon i-Eye font-weight-bold">Detail</i>
 														</a>
@@ -103,9 +95,6 @@
 														<a class="text-danger mr-2" href="#" data-toggle="modal" href="#" data-target="#tolak<?= $value->id_order ?>">
 															<i class="nav-icon i-Close-Window font-weight-bold">Tolak</i>
 														</a>
-												<?php	
-													}
-												 ?>
 												
 											</td>
 										</tr>
@@ -151,8 +140,7 @@
 					<p>Yakin untuk menolak permintaan ini ?</p>
 				</div>
 				<div class="modal-footer justify-content-between">
-					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-					<a href="<?= site_url() ?>admin/Sewa/tolak/<?= $key->id_order ?>" class="btn btn-danger">Yes</a>
+					<a href="<?= site_url() ?>admin/Sewa/tolak/<?= $key->id_order ?>" class="btn btn-danger">Tolak</a>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -174,7 +162,7 @@
 				</div>
 				<div class="modal-body">
 					<?php
-				        if($key->status_order==0){
+				        if($key->stat_adm==0){
 				?>
 				            <span class="badge badge-warning">Perlu Konfirmasi</span>
 				<?php
@@ -295,10 +283,7 @@
 	                                                   <input type="hidden" name="tgl_pulang" value="<?= $key->tgl_pulang ?>">
 					</div>
 					<div class="modal-footer justify-content-between">
-						<button class="btn btn-secondary" type="button" data-dismiss="modal">
-							Close
-						</button>
-						<button type="submit" class="btn btn-primary ml-2">Save changes</button>
+						<button type="submit" class="btn btn-primary ml-2">Simpan Perubahan</button>
 					</div>
 				</form>
 			</div>
@@ -336,10 +321,7 @@
 	                                                   <input type="hidden" name="tgl_pergi" value="<?= $key->tgl_pergi ?>">
 					</div>
 					<div class="modal-footer justify-content-between">
-						<button class="btn btn-secondary" type="button" data-dismiss="modal">
-							Close
-						</button>
-						<button type="submit" class="btn btn-primary ml-2">Save changes</button>
+						<button type="submit" class="btn btn-primary ml-2">Simpan Perubahan</button>
 					</div>
 				</form>
 			</div>
@@ -355,7 +337,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalCenterTitle">
-                                            Form Pengajuan Penyewaan Mobil
+                                            Form Peminjaman Mobil
                                         </h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
@@ -428,10 +410,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                                                Close
-                                            </button>
-                                            <button type="submit" id="submit" class="btn btn-primary ml-2" onclick="return Validasi();">Save</button>
+                                            <button type="submit" id="submit" class="btn btn-primary ml-2" onclick="return Validasi();">Tambah Peminjaman</button>
                                         </div>
                                     </form>
                                     <script>

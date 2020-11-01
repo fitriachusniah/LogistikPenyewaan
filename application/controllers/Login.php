@@ -89,6 +89,10 @@ class Login extends CI_Controller {
 							'status'		=> 'login',
 							'sewa_action'  => base_url('konsumen/Sewa/add'),
 							'cek_pinjaman'  => $x,
+							'belum_disetujui_admin' => $this->Sewa_Model->konsumen_belum_disetujui($fakultas->fakultas_id),
+							'disetujui_admin' => $this->Sewa_Model->konsumen_disetujui($fakultas->fakultas_id),
+							'selesai' => $this->Sewa_Model->konsumen_selesai($fakultas->fakultas_id),
+							'ditolak' => $this->Sewa_Model->konsumen_ditolak($fakultas->fakultas_id),
 						);
 
 						$this->session->set_userdata($data_session);

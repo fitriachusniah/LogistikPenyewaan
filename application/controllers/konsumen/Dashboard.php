@@ -9,12 +9,13 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Users_Model');
 		$this->load->model('Fakultas_Model');
+		$this->load->model('Sewa_Model');
 	    require 'session.php';
 	}
 
 	function index(){
 		$fakultas_id = $this->session->userdata('id');
-		$cek_pinjaman = $this->db->query("SELECT * FROM order_sewa WHERE id_fakultas = '$fakultas_id' AND (status = '2' OR status = '6')")->row();
+		$cek_pinjaman = $this->db->query("SELECT * FROM order_sewa WHERE id_fakultas = '$fakultas_id' AND stat_cst='0' AND (stat_drv='2' OR status='1')")->row();
 
 		$x = 0;
 		if($cek_pinjaman){
@@ -23,6 +24,10 @@ class Dashboard extends CI_Controller {
 		$data = array(
 			'sewa_action'  => base_url('konsumen/Sewa/add'),
 			'cek_pinjaman'  => $x,
+			'belum_disetujui_admin' => $this->Sewa_Model->konsumen_belum_disetujui($fakultas_id),
+			'disetujui_admin' => $this->Sewa_Model->konsumen_disetujui($fakultas_id),
+			'selesai' => $this->Sewa_Model->konsumen_selesai($fakultas_id),
+			'ditolak' => $this->Sewa_Model->konsumen_ditolak($fakultas_id),
 		);
 		$this->load->view('konsumen/Dashboard',$data);
 		// echo "$x";

@@ -4,7 +4,7 @@
 <div class="main-content-wrap d-flex flex-column">
 	<div class="main-content">
 		<div class="breadcrumb">
-			<h1 class="mr-2">Menunggu Perjalanan</h1>
+			<h1 class="mr-2">Sedang Perjalanan</h1>
 			<ul>
 				<li>Permintaan</li>
 				<li>Peminjaman Mobil</li>
@@ -39,13 +39,7 @@
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
-													<?php
-													        if($value->status_order==2 OR $value->status_order==4){
-													?>
-													            <span class="badge badge-warning">Menunggu Perjalanan</span>
-													<?php
-													        }
-													?>
+													<span class="badge badge-warning">Sedang Berjalan</span>
 												
 											</td>
 											<td>
@@ -124,9 +118,6 @@
                     <b>bertanda (*) harus diisi</b>
                 </div>
                 <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                            Close
-                        </button>
                         <button type="submit" class="btn btn-primary ml-2">Simpan</button>
                     </div>
                 </form>
@@ -150,13 +141,7 @@
 				</div>
 				<div class="modal-body">
 				
-				<?php
-				        if($key->status_order==2){
-				?>
-				            <span class="badge badge-success">Menunggu Perjalanan</span>
-				<?php
-				        }
-				?>
+				<span class="badge badge-warning">Sedang Berjalan</span>
 				        
 				<table>
 						<tr>

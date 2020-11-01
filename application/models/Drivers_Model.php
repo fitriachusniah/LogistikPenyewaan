@@ -6,15 +6,26 @@ class Drivers_Model extends CI_Model {
 
 	public function list()
 	{
-		return $this->db->query("SELECT * FROM driver
+		return $this->db->query("SELECT driver.*, AVG(feedback_driver.rating) as avg_rating FROM driver
 								 JOIN users ON users.user_id = driver.user_id
+								 LEFT JOIN order_sewa ON order_sewa.id_driver = driver.id_driver
+								 LEFT JOIN feedback_driver ON feedback_driver.id_order = order_sewa.id_order
+								 GROUP BY driver.id_driver
 								 ORDER BY driver.id_driver
 								")->result();
 	}
 
 	public function getDriverById($id)
 	{
-		return $this->db->where('id_driver',$id)->get('driver')->row();
+		return $this->db->query("SELECT driver.*, order_sewa.*, feedback_driver.*, fakultas.*, mobil.*, AVG(feedback_driver.rating) as avg_rating
+								 FROM order_sewa 
+								 JOIN fakultas ON order_sewa.id_fakultas = fakultas.fakultas_id
+								 JOIN mobil ON order_sewa.id_mobil = mobil.id_mobil
+								 JOIN driver ON order_sewa.id_driver = driver.id_driver
+								 JOIN feedback_driver ON feedback_driver.id_order = order_sewa.id_order
+								 WHERE driver.id_driver = '$id'
+								 GROUP BY order_sewa.id_order
+								")->result();
 	}
 
 	public function list_available($tgl_pergi)
@@ -27,18 +38,9 @@ class Drivers_Model extends CI_Model {
 															) b
 															USING(id_driver)
 															 WHERE id_driver NOT IN
-															 (SELECT id_driver FROM order_sewa WHERE date(tgl_pergi) = '$tgl_pergi' OR status = '4')
+															 (SELECT id_driver FROM order_sewa WHERE date(tgl_pergi) = '$tgl_pergi' OR stat_drv = '1')
 															 ORDER BY b.count ASC")->result();
 
-		// return $this->db->query("SELECT COUNT(`id_order`) as Num, driver.* FROM driver
-		// 						 LEFT JOIN order_sewa ON driver.id_driver = order_sewa.id_driver
-
-		// 						GROUP BY order_sewa.id_driver
-		// 						ORDER BY CASE
-		// 						            WHEN order_sewa.id_driver = 0 THEN -1
-		// 						            ELSE COUNT(order_sewa.id_order)
-		// 						          END DESC
-		// 						 ")->result();
 	}
 
 	public function input_data($data,$table){
@@ -65,7 +67,7 @@ class Drivers_Model extends CI_Model {
 	{
 		return $this->db->select("id_driver,count(id_driver) as count_trip")
 					 ->from('order_sewa')
-					 ->where('status',3)
+					 ->where('status',1)
 					 ->group_by('id_driver')
 					 ->order_by('id_driver','ASC')
 					 ->get()->result();
@@ -75,7 +77,7 @@ class Drivers_Model extends CI_Model {
 	{
 		return $this->db->select("count(id_driver) as count_trip")
 					 ->from('order_sewa')
-					 ->where('status', 3)
+					 ->where('status', 1)
 					 ->where('id_driver', $id)
 					 ->group_by('id_driver')
 					 ->get()->row();

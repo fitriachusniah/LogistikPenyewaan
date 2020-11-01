@@ -38,14 +38,7 @@
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
-													<?php
-													        if($value->status_order==5){
-													?>
-													            <span class="badge badge-danger">Ditolak</span>
-													<?php
-													        }
-													?>
-												
+												<span class="badge badge-danger">Ditolak</span>
 											</td>
 											<td><?php $time = strtotime($value->tgl_pergi);				echo date('d F Y - H:i', $time); ?></td>
 											<td><?= $value->nama_fakultas ?></td>
@@ -97,13 +90,7 @@
 				</div>
 				<div class="modal-body">
 				
-				<?php
-				        if($key->status_order==5){
-				?>
-				            <span class="badge badge-danger">Ditolak</span>
-				<?php
-				        }
-				?>
+				<span class="badge badge-danger">Ditolak</span>
 				        
 				<table>
 						<tr>

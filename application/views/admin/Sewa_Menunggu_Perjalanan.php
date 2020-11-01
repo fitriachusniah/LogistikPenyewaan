@@ -4,7 +4,7 @@
 <div class="main-content-wrap d-flex flex-column">
 	<div class="main-content">
 		<div class="breadcrumb">
-			<h1 class="mr-2">Waiting Close Trip</h1>
+			<h1 class="mr-2">Trip Sedang Berjalan</h1>
 			<ul>
 				<li>Permintaan</li>
 				<li>Peminjaman Mobil</li>
@@ -26,6 +26,7 @@
 										<th style="width: 15%">Status</th>
 										<th>Due</th>
 										<th style="width: 15%">Tgl Keberangkatan</th>
+										<th style="width: 15%">Tgl Pulang</th>
 										<th style="width: 20%">Fakultas</th>
 										<th style="width: 10%">Jml Orang</th>
 										<th class="text-center">Action</th>
@@ -39,25 +40,35 @@
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
-													<?php
-													        if($value->status_order==2 || $value->status_order==6 ){
-													?>
-													            <span class="badge badge-warning">Waiting for closing</span>
-													<?php
-													        }
-													?>
+												<?php
+												if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
+												?>
+
+													<span class="badge badge-warning">Sedang Berjalan</span>
+
+												<?php
+												}else if($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==1){
+												?>
+													<span class="badge badge-success">Trip Selesai, Menunggu Close</span>
+												<?php
+												}
+												?>
 												
 											</td>
 											<td>
 												<?php 
 													if($value->daysRemaining<0){
 														echo "passed";
-													}else{
+													}else if($value->daysRemaining==0){
+														echo "hari ini";
+													}
+													else{
 														echo $value->daysRemaining." days";
 													}
 												?>
 											</td>
 											<td><?php $time = strtotime($value->tgl_pergi);				echo date('d F Y - H:i', $time); ?></td>
+											<td><?php $time = strtotime($value->tgl_pulang);				echo date('d F Y - H:i', $time); ?></td>
 											<td><?= $value->nama_fakultas ?></td>
 											<td><?= $value->jml_penumpang ?> org</td>
 											<td class="text-center">												
@@ -65,7 +76,7 @@
 													<i class="nav-icon i-Eye font-weight-bold">Detail</i>
 												</a>
 												<?php
-				                                      if($value->status_order==6){
+				                                      if($value->stat_drv==2 && $value->stat_cst==1){
 				                                       ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#close_trip<?= $value->id_order ?>">
 															<i class="nav-icon i-Yes font-weight-bold">Close Trip</i>
@@ -272,6 +283,52 @@
                 <div class="modal-body">
                     <p>Yakin untuk close trip ini ?</p>
                     <div class="col-md-9">
+                    			<?php
+                    				if($key->id_feedback==True){
+                    			?>
+
+                    					<table>
+                    						<tr>
+												<td colspan="3">
+													<center>
+													<?php 
+							                          if (!$key->foto_driver) { ?>
+							                           
+							                         <?php } else { ?>
+							                          <img src="<?= base_url()?>assets/foto_driver/<?=$key->foto_driver ?>"  width='100px'>
+							                        <?php } ?>
+							                        </center>
+												</td>
+											</tr>
+											<tr>
+												<td><b>Driver</b></td>
+												<td>:</td>
+												<td>
+													<?php 
+														if($key->id_driver != Null){
+															echo "<b>".$key->nama_driver."</b>";	
+														}else{
+															echo "-";
+														}
+													?>
+
+												</td>
+											</tr>
+											<tr>
+												<td>Rating</td>
+												<td>:</td>
+												<td><?= number_format($key->rating,2) ?></td>
+											</tr>
+											<tr>
+												<td>Komentar</td>
+												<td>:</td>
+												<td><?= $key->komentar ?></td>
+											</tr>
+                    					</table>
+                    			<?php
+                    				}
+                    			?>
+                    			<br>
                     			<div class="form-group">
                                         <label for="">Km Awal</label>
                                         <input name="km_awal" type="number" class="form-control form-control-rounded" value="<?= $key->km_awal?>" min="1" readonly="" />
@@ -294,9 +351,6 @@
                     <b>bertanda (*) harus diisi</b>
                 </div>
                 <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                            Close
-                        </button>
                         <button type="submit" class="btn btn-primary ml-2">Close Trip</button>
                     </div>
                 </form>

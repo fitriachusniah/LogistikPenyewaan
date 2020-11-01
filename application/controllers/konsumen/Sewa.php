@@ -55,7 +55,7 @@ class Sewa extends CI_Controller {
 
 		$this->db->query("INSERT INTO feedback_driver(id_order, rating, komentar) VALUES ('$id','$rating','$komentar')");
 		if($status!='6') {
-			$this->db->query("UPDATE order_sewa SET status = '4' WHERE id_order = '$id'");
+			$this->db->query("UPDATE order_sewa SET stat_cst = '1' WHERE id_order = '$id'");
 		}
 		
 		redirect('konsumen/Sewa', 'refresh');

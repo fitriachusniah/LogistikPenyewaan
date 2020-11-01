@@ -41,7 +41,7 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
 												<?php
-												if($value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && ($value->stat_cst==0 || $value->stat_cst==1)){
+												if($value->stat_adm==1 && $value->stat_drv==1 && ($value->stat_cst==0 || $value->stat_cst==1)){
 												?>
 
 													<span class="badge badge-warning">Sedang Berjalan</span>

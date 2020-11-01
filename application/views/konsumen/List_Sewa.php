@@ -63,7 +63,7 @@
 				                                       ?>
 				                                          <span class="badge badge-warning">Sedang Perjalanan</span>
 				                                      <?php
-				                                        }else if($value->status==1 && $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
+				                                        }else if($value->status==1 && $value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0){
 				                                      ?>
 				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
 				                                      <?php
@@ -140,7 +140,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					 <?php
+					<?php
 				                                        if($value->stat_adm==0 && $value->stat_drv==0 && $value->stat_cst==0){
 				                                      ?>
 				                                          <span class="badge badge-warning">Belum Disetujui</span>
@@ -153,19 +153,20 @@
 				                                       ?>
 				                                          <span class="badge badge-warning">Sedang Perjalanan</span>
 				                                      <?php
-				                                        }else if($value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
+				                                        }else if($value->status==1 && $value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0){
 				                                      ?>
 				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
 				                                      <?php
-				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1){
+				                                        }else if($value->status==1 AND $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
 				                                      ?>
 				                                          <span class="badge badge-success">Selesai</span>
 				                                      <?php
 				                                        }else if($value->stat_adm==5){
 				                                      ?>
-				                                      	  <span class="badge badge-danger">Ditolak</span>
+				                                      	  <span class="badge badge-danger">Permintaan Ditolak</span>
 				                                      <?php
 				                                        }
+
 				                                      ?>
 
 				<table>
@@ -319,7 +320,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="ExampleModalLabel">Penilaian dan Komentar Untuk Driver</h4>
+					<h4 class="modal-title" id="ExampleModalLabel">Close Trip dan Beri Feedback</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>

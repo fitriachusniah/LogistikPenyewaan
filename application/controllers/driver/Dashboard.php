@@ -88,7 +88,7 @@ class Dashboard extends CI_Controller {
 
 		$this->db->query("UPDATE order_sewa SET stat_drv = 2 WHERE id_order = '$id'");
 		$this->db->query("UPDATE mobil SET km_akhir = '$km_akhir' WHERE id_mobil = '$id_mobil'");
-		redirect('driver/Dashboard/menunggu_perjalanan', 'refresh');
+		redirect('driver/Dashboard/Selesai', 'refresh');
 	}
 
 	function update_profile($id){

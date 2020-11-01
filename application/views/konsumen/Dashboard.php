@@ -111,7 +111,7 @@
                                                              <?php $datetime = new DateTime('now');
                                                                     $min_date = date('Y-m-d\TH:i', strtotime("now"));
                                                                     $max_date = date('Y-m-d\TH:i', strtotime("+7 day"));
-                                                                    echo $max_date;
+                                                                    //echo $max_date;
                                                               ?>
                                                             <input name="tgl_pergi" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>" max="<?= $max_date ?>"  required />
                                                         </div>
@@ -153,9 +153,6 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                                                Close
-                                            </button>
                                             <button type="submit" id="submit" class="btn btn-primary ml-2" onclick="return Validasi();">Save</button>
                                         </div>
                                     </form>

@@ -41,7 +41,7 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
 												<?php
-												if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
+												if($value->stat_adm==1 && $value->stat_drv==1 && ($value->stat_cst==0 || $value->stat_cst==1)){
 												?>
 
 													<span class="badge badge-warning">Sedang Berjalan</span>
@@ -128,12 +128,18 @@
 				<div class="modal-body">
 				
 				<?php
-				        if($key->status_order==2){
-				?>
-				            <span class="badge badge-success">Menunggu Perjalanan</span>
-				<?php
-				        }
-				?>
+												if($key->stat_adm==1 && $key->stat_drv==1 && ($key->stat_cst==0 || $key->stat_cst==1)){
+												?>
+
+													<span class="badge badge-warning">Sedang Berjalan</span>
+
+												<?php
+												}else if($key->stat_adm==1 && $key->stat_drv==2 && $key->stat_cst==1){
+												?>
+													<span class="badge badge-success">Trip Selesai, Menunggu Close</span>
+												<?php
+												}
+												?>
 				        
 				<table>
 						<tr>
@@ -293,7 +299,7 @@
 													<center>
 													<?php 
 							                          if (!$key->foto_driver) { ?>
-							                           
+							                         	<img id="userDropdown" src="<?= base_url()?>assets/foto_driver/driver_default.png" width="100px" />
 							                         <?php } else { ?>
 							                          <img src="<?= base_url()?>assets/foto_driver/<?=$key->foto_driver ?>"  width='100px'>
 							                        <?php } ?>

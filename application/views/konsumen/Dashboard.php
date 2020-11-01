@@ -139,7 +139,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="">Jumlah Penumpang*</label>
+                                                            <label for="">Jumlah Penumpang(minimal 3 org)*</label>
                                                             <input name="jml_penumpang" min="3" type="number" class="form-control form-control-rounded"  required />
                                                         </div>
                                                     </div>

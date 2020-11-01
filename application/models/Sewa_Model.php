@@ -14,7 +14,7 @@ class Sewa_Model extends CI_Model {
 								 LEFT JOIN driver ON order_sewa.id_driver = driver.id_driver
 								 LEFT JOIN mobil ON order_sewa.id_mobil = mobil.id_mobil
 								 WHERE id_fakultas = '$id_fakultas'
-								 ORDER BY tgl_pergi ASC
+								 ORDER BY tgl_pergi DESC
 								")->result();
 	}
 
@@ -35,7 +35,7 @@ class Sewa_Model extends CI_Model {
 
 	public function konsumen_disetujui($id)
 	{
-		return $this->db->query("SELECT COUNT(id_order) as jmlDisetujui FROM order_sewa WHERE stat_adm = '1' AND id_fakultas='$id'")->row();
+		return $this->db->query("SELECT COUNT(id_order) as jmlDisetujui FROM order_sewa WHERE stat_adm = '1' AND status='0' AND id_fakultas='$id'")->row();
 	}
 
 	///////////////////////ADMIN//////////////////////////

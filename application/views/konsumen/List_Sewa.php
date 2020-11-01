@@ -84,7 +84,7 @@
 													<i class="nav-icon i-Eye font-weight-bold">Detail</i>
 												</a>
 												<?php
-				                                      if($value->status==0 && $value->stat_drv==1 && $value->stat_cst==0){
+				                                      if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
 				                                       ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
 															<i class="nav-icon i-Yes font-weight-bold">Close Trip</i>

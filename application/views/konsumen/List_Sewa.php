@@ -64,11 +64,11 @@
 				                                       ?>
 				                                          <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Perjalanan</span>
 				                                      <?php
-				                                        }else if($value->status_order==1 && $value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0){
+				                                        }else if(($value->status_order==1 || $value->status_order==0) && $value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0){
 				                                      ?>
 				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
 				                                      <?php
-				                                        }else if($value->status_order==1 AND $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
+				                                        }else if(($value->status_order==1 || $value->status_order==0) AND $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
 				                                      ?>
 				                                          <span class="badge badge-success">Selesai</span>
 				                                      <?php
@@ -92,7 +92,7 @@
 				                                      if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
 				                                       ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
-															<i class="nav-icon i-Yes font-weight-bold">Close Trip</i>
+															<i class="nav-icon i-Yes font-weight-bold">Close dan beri rating</i>
 														</a>
 				                                      <?php
 				                                        }else if($value->status==1 && $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
@@ -145,35 +145,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<?php
-				                                        if($value->stat_adm==0 && ($value->stat_drv==0 || $value->stat_drv==5) && $value->stat_cst==0){
-				                                      ?>
-				                                          <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Belum Disetujui</span>
-				                                       <?php
-				                                        }else if($value->stat_adm==1 && $value->stat_drv==0 && $value->stat_cst==0){
-				                                      ?>
-				                                          <span class="badge badge-success">Disetujui Admin</span>
-				                                      <?php
-				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
-				                                       ?>
-				                                          <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Perjalanan</span>
-				                                      <?php
-				                                        }else if($value->status==1 && $value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0){
-				                                      ?>
-				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
-				                                      <?php
-				                                        }else if($value->status==1 AND $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
-				                                      ?>
-				                                          <span class="badge badge-success">Selesai</span>
-				                                      <?php
-				                                        }else if($value->stat_adm==5){
-				                                      ?>
-				                                      	  <span class="badge badge-danger">Permintaan Ditolak</span>
-				                                      <?php
-				                                        }
-
-				                                      ?>
-
+					 
 				<table>
 						<?php
 							if($key->stat_adm!=0){

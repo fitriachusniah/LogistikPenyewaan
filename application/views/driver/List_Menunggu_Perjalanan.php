@@ -39,7 +39,7 @@
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
-													<span class="badge badge-warning">Sedang Berjalan</span>
+													<span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Berjalan</span>
 												
 											</td>
 											<td>
@@ -141,7 +141,7 @@
 				</div>
 				<div class="modal-body">
 				
-				<span class="badge badge-warning">Sedang Berjalan</span>
+				<span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Berjalan</span>
 				        
 				<table>
 						<tr>

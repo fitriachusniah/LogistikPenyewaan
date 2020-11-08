@@ -42,7 +42,7 @@
 													<?php
 													        if($value->stat_adm==1 && $value->stat_drv==0 && $value->stat_cst==0){
 													?>
-													            <span class="badge badge-warning">Diterima,Menunggu Konfirmasi Driver</span>
+													            <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Diterima,Menunggu Konfirmasi Driver</span>
 													<?php
 													        }
 													?>
@@ -110,7 +110,7 @@
 				<?php
 				        if($key->stat_adm==1 && $key->stat_drv==0 && $key->stat_cst==0){
 				?>
-				            <span class="badge badge-warning">Diterima,Menunggu Konfirmasi Driver</span>
+				            <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Diterima,Menunggu Konfirmasi Driver</span>
 				<?php
 				        }
 				?>

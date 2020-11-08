@@ -27,7 +27,20 @@
 					<div class="card-body">
 						<form action="<?= $terima_action ?>/<?= $id ?>" method="post">
 							<div class="modal-body">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for=""><b>Catatan khusus: </b></label>
+										<?php
 
+										 	if($sewa_masuk->note!=Null){
+										 		echo "<br>".$sewa_masuk->note."<br>";
+										 	} 
+
+										 ?>
+										</div>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">

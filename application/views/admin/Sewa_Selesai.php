@@ -170,6 +170,14 @@
 							</td>
 						</tr>
 						<tr>
+							<td>Total KM</td>
+							<td>:</td>
+							<td>
+								<b><?= $key->total_km?> km</b>
+
+							</td>
+						</tr>
+						<tr>
 							<td><b>Driver</b></td>
 							<td>:</td>
 							<td>

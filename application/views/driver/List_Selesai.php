@@ -152,30 +152,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td><b>Driver</b></td>
+							<td>Total KM</td>
 							<td>:</td>
 							<td>
-								<?php 
-									if($key->id_driver != Null){
-										echo "<b>".$key->nama_driver."</b>";	
-									}else{
-										echo "-";
-									}
-								?>
-
-							</td>
-						</tr>
-						<tr>
-							<td><b>No.HP Driver</b></td>
-							<td>:</td>
-							<td>
-								<?php 
-									if($key->id_driver != Null){
-										echo "<b>".$key->no_hp."</b>";	
-									}else{
-										echo "-";
-									}
-								?>
+								<b><?= $key->total_km?> km</b>
 
 							</td>
 						</tr>

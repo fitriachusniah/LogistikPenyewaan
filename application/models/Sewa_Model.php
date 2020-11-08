@@ -47,9 +47,17 @@ class Sewa_Model extends CI_Model {
 								 JOIN fakultas ON order_sewa.id_fakultas = fakultas.fakultas_id
 								 LEFT JOIN decline_reason ON order_sewa.id_order = decline_reason.id_order
 								 LEFT JOIN driver ON decline_reason.id_driver = driver.id_driver
-								 WHERE order_sewa.stat_adm = '0' AND (order_sewa.stat_drv = '0' OR order_sewa.stat_drv = '5' ) AND order_sewa.stat_cst = '0'
+								 WHERE order_sewa.stat_adm = '0' AND (order_sewa.stat_drv = '0' OR order_sewa.stat_drv = '5' ) AND order_sewa.stat_cst = '0' AND order_sewa.deleted_at IS NULL
  								 ORDER BY tgl_pergi ASC
 								")->result();
+	}
+
+	public function list_sewa_masuk_byId($id)
+	{
+		return $this->db->query("SELECT *
+								 FROM order_sewa
+								 WHERE order_sewa.id_order='$id'
+								")->row();
 	}
 
 	public function list_sewa_menunggu_driver()
@@ -183,6 +191,12 @@ class Sewa_Model extends CI_Model {
 	{
 		return $this->db->query("SELECT SUM(cost) as thisMonthCost FROM order_sewa WHERE status = '1' AND YEAR(tgl_pergi) = YEAR(CURRENT_DATE())")->row();
 	}
+
+	public function delete_data($id,$tgl)
+    {
+        $this->db->query("UPDATE order_sewa SET deleted_at='$tgl'
+        				  WHERE id_order = '$id'");
+    }
 }
 
 ?>

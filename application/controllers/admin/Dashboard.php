@@ -15,6 +15,23 @@ class Dashboard extends CI_Controller {
 	}
 
 	function index(){
+
+		$expired = $this->db->query("SELECT id_order FROM order_sewa WHERE DATE(tgl_pergi) = DATE(now()) AND TIMESTAMPDIFF(SECOND, now(), tgl_pergi) < 0")->result();
+		
+		
+		foreach ($expired as $key => $value) {
+			$id = $value->id_order;
+			$this->db->query("UPDATE order_sewa SET status = '2' WHERE id_order='$id' AND stat_adm = '0'");
+			//print_r($value);
+		}
+
+		$total_cost;
+
+		for ($i=1; $i <=12 ; $i++) { 
+			$total_cost[$i] = $this->db->query("SELECT SUM(cost) as total FROM order_sewa WHERE MONTH(tgl_pergi) = '$i' AND YEAR(tgl_pergi) = YEAR(now()) AND status='1' ")->row();
+		}
+
+		//print_r($total_cost);
 		$data_session = array(
 				'js_file'   => 'Dashboard.js.php',
 				'status' 		=> 'login',
@@ -25,10 +42,12 @@ class Dashboard extends CI_Controller {
 				'approved'	=> $this->Sewa_Model->getApprovedTotal(),
 				'cost'			=> $this->Sewa_Model->getCostTotalThisMonth(),
 				'driver_trip' => $this->Drivers_Model->getAllDriverTrip(),
+				'cost_total' => $total_cost
 		);
 
-		// print_r($this->Drivers_Model->getAllDriverTrip());
+		// //print_r($this->Drivers_Model->getAllDriverTrip());
 		$this->load->view('admin/Dashboard',$data_session);
+		//print_r($berangkat_hari_ini);
 	}
 
 	public function getDriverData()
@@ -65,6 +84,7 @@ class Dashboard extends CI_Controller {
 		$this->load->view('admin/Driver_Trips_Detail',$data);
 		//print_r($this->Drivers_Model->getDriverById($id));
 	}
+
 
 
 }

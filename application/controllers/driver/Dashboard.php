@@ -62,13 +62,25 @@ class Dashboard extends CI_Controller {
 		$order = $this->db->query("SELECT * FROM order_sewa WHERE id_order = '$id'")->row();
 		$id_mobil = $order->id_mobil;
 
-		$this->db->query("UPDATE order_sewa SET stat_drv = 1 WHERE id_order = '$id'");
-		$this->db->query("UPDATE mobil SET km_awal = '$km_awal' WHERE id_mobil = '$id_mobil'");
+		$km_awal_sebelumnya = $this->db->query("SELECT km_awal FROM mobil WHERE id_mobil = '$id_mobil'")->row();
 
-		$notif_message = "Perjalanan berhasil diterima";
-		$notif_action = 'success'; //success,error,warning,question
-		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
-		redirect('driver/Dashboard', 'refresh');
+		if($km_awal<$km_awal_sebelumnya->km_awal){
+			$notif_message = "KM Awal yang dimasukkan salah! ";
+			$notif_action = 'error'; //success,error,warning,question
+			$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+			redirect('driver/Dashboard', 'refresh');
+		}else if($km_awal>=$km_awal_sebelumnya->km_awal){
+			$this->db->query("UPDATE order_sewa SET stat_drv = 1 WHERE id_order = '$id'");
+			$this->db->query("UPDATE mobil SET km_awal = '$km_awal' WHERE id_mobil = '$id_mobil'");
+
+			$notif_message = "Perjalanan berhasil diterima";
+			$notif_action = 'success'; //success,error,warning,question
+			$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+			redirect('driver/Dashboard/Menunggu_Perjalanan', 'refresh');
+		}
+		
+		// echo "$km_awal";
+		// print_r($km_awal_sebelumnya);
 	}
 
 	function tolak($id){
@@ -89,16 +101,32 @@ class Dashboard extends CI_Controller {
 	}
 
 	function close_trip($id,$id_mobil){
-
+		$total_km = 0;
 		$km_akhir = $this->input->post('km_akhir');
 
-		$this->db->query("UPDATE order_sewa SET stat_drv = 2 WHERE id_order = '$id'");
-		$this->db->query("UPDATE mobil SET km_akhir = '$km_akhir' WHERE id_mobil = '$id_mobil'");
+		$km_awal = $this->db->query("SELECT km_awal FROM mobil WHERE id_mobil = '$id_mobil'")->row();
+		$km_akhir_sebelumnya = $this->db->query("SELECT km_akhir FROM mobil WHERE id_mobil = '$id_mobil'")->row();
 
-		$notif_message = "Perjalanan selesai, trip closed";
-		$notif_action = 'success'; //success,error,warning,question
-		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
-		redirect('driver/Dashboard/Selesai', 'refresh');
+		$total_km = $km_akhir - $km_awal->km_awal;
+		if($km_akhir<=$km_awal->km_awal || $km_akhir<$km_akhir_sebelumnya->km_akhir){
+			$notif_message = "KM Akhir yang dimasukkan salah! ";
+			$notif_action = 'error'; //success,error,warning,question
+			$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+			redirect('driver/Dashboard/Menunggu_Perjalanan', 'refresh');
+			//echo "salah";
+		}else if($km_akhir>=$km_akhir_sebelumnya->km_akhir){
+			$this->db->query("UPDATE order_sewa SET stat_drv = 2,total_km = '$total_km' WHERE id_order = '$id'");
+			$this->db->query("UPDATE mobil SET km_akhir = '$km_akhir' WHERE id_mobil = '$id_mobil'");
+
+			$notif_message = "Perjalanan selesai, trip closed";
+			$notif_action = 'success'; //success,error,warning,question
+			$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+			redirect('driver/Dashboard/Selesai', 'refresh');
+			// echo "$total_km";
+			// echo "benar";
+		}
+
+		
 	}
 
 	function update_profile($id){

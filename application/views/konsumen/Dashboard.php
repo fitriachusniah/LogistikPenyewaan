@@ -113,13 +113,13 @@
                                                                     $max_date = date('Y-m-d\TH:i', strtotime("+7 day"));
                                                                     //echo $max_date;
                                                               ?>
-                                                            <input name="tgl_pergi" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>" max="<?= $max_date ?>"  required />
+                                                            <input name="tgl_pergi" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>"  required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="">Tanggal dan Jam Pulang*</label>
-                                                            <input name="tgl_pulang" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>" max="<?= $max_date ?>" required />
+                                                            <input name="tgl_pulang" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>" required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">

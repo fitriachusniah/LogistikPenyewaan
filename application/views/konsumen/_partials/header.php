@@ -15,7 +15,7 @@
     <style media="screen">
       .rate-bintang
       {
-        color: #d3e446;
+        color: orange;
       }
 
       @media only screen and (min-width: 600px) {

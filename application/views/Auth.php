@@ -19,7 +19,6 @@
 							<div class="p-4">
 
 								<h1 class="mb-3 text-18">Sign In</h1>
-								<button type="button" id="tes">add to home screen</button>
 								<p style="color:red"><?php echo $info ?></p>
 								<p style="color:red"><?php if(isset($_GET['info']))echo $_GET['info'] ?></p>
 								<form method="POST" action="<?=base_url()?>Login/login">
@@ -35,6 +34,9 @@
 															Lupa Password?
 														</a> -->
 									<button type="submit" class="btn btn-rounded btn-primary btn-block mt-2">Sign In</button>
+									<br><center>
+									<button type="button" id="tes">add to home screen</button>
+								</center>
 								</form>
 							</div>
 						</div>
@@ -97,7 +99,7 @@
 			});
 		</script>
 	</body>
-	
+
 </html>
 
 
@@ -112,7 +114,7 @@
 				</div>
 				<form action="<?= $edit_action ?>/<?= $key->id_order?>" method="post">
 					<div class="modal-body">
-						
+
 						 <div class="col-md-12">
 	                                                        <div class="form-group">
 	                                                        	<h6><b>Pulang</b> pada tanggal : <b><?php $time = strtotime($key->tgl_pulang);echo date('d F Y - H:i', $time); ?></b></h6>

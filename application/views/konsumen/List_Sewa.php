@@ -51,29 +51,34 @@
 											<td><?= $value->tujuan ?></td>
 											<td><b>
 												 <?php
-				                                        if($value->stat_adm==0 && $value->stat_drv==0 && $value->stat_cst==0){
+												 	// echo $value->status_order."-".$value->stat_adm."-".$value->stat_drv."-".$value->stat_cst;
+				                                        if($value->status_order==0 && $value->stat_adm==0 && ($value->stat_drv==0 || $value->stat_drv==5) && $value->stat_cst==0){
 				                                      ?>
-				                                          <span class="badge badge-warning">Belum Disetujui</span>
+				                                          <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Belum Disetujui</span>
 				                                       <?php
-				                                        }else if($value->stat_adm==1 && $value->stat_drv==0 && $value->stat_cst==0){
+				                                        }else if($value->status_order==0 && $value->stat_adm==1 && $value->stat_drv==0 && $value->stat_cst==0){
 				                                      ?>
 				                                          <span class="badge badge-success">Disetujui Admin</span>
 				                                      <?php
-				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
+				                                        }else if($value->status_order==0 && $value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
 				                                       ?>
-				                                          <span class="badge badge-warning">Sedang Perjalanan</span>
+				                                          <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Perjalanan</span>
 				                                      <?php
-				                                        }else if($value->status==1 && $value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0){
+				                                        }else if($value->status_order==1 && $value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0){
 				                                      ?>
 				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
 				                                      <?php
-				                                        }else if($value->status==1 AND $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
+				                                        }else if($value->status_order==1 AND $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
 				                                      ?>
 				                                          <span class="badge badge-success">Selesai</span>
 				                                      <?php
 				                                        }else if($value->stat_adm==5){
 				                                      ?>
 				                                      	  <span class="badge badge-danger">Permintaan Ditolak</span>
+				                                      <?php
+				                                        }else if($value->status_order==2){
+				                                      ?>
+				                                      	  <span class="badge badge-danger">Permintaan Expired Karena Admin Telat Mengkonfirmasi.<br>Silahkan Hubungi Admin.</span>
 				                                      <?php
 				                                        }
 				                                      ?>
@@ -141,9 +146,9 @@
 				</div>
 				<div class="modal-body">
 					<?php
-				                                        if($value->stat_adm==0 && $value->stat_drv==0 && $value->stat_cst==0){
+				                                        if($value->stat_adm==0 && ($value->stat_drv==0 || $value->stat_drv==5) && $value->stat_cst==0){
 				                                      ?>
-				                                          <span class="badge badge-warning">Belum Disetujui</span>
+				                                          <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Belum Disetujui</span>
 				                                       <?php
 				                                        }else if($value->stat_adm==1 && $value->stat_drv==0 && $value->stat_cst==0){
 				                                      ?>
@@ -151,7 +156,7 @@
 				                                      <?php
 				                                        }else if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
 				                                       ?>
-				                                          <span class="badge badge-warning">Sedang Perjalanan</span>
+				                                          <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Perjalanan</span>
 				                                      <?php
 				                                        }else if($value->status==1 && $value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0){
 				                                      ?>
@@ -171,7 +176,7 @@
 
 				<table>
 						<?php
-							if($key->stat_adm!=0 && $key->stat_drv!=0){
+							if($key->stat_adm!=0){
 						?>
 
 							<tr>

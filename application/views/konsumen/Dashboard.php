@@ -25,7 +25,7 @@
                                         }else{
                                     ?>
                                             <button disabled class="btn btn-default btn-rounded" type="button" data-toggle="modal" data-target="#addSewa" style="padding: 25px 40px; font-weight: 50%; color:#000;">
-                                            Anda tidak dapat meminjam Mobil
+                                            Anda tidak dapat meminjam mobil karena belum memberikan rating.
                                             </button><br>
 
                                     <?php
@@ -110,7 +110,7 @@
                                                             <label for="">Tanggal dan Jam Berangkat*</label>
                                                              <?php $datetime = new DateTime('now');
                                                                     $min_date = date('Y-m-d\TH:i', strtotime("now"));
-                                                                    $max_date = date('Y-m-d\TH:i', strtotime("+7 day"));
+                                                                    //$max_date = date('Y-m-d\TH:i', strtotime("+7 day"));
                                                                     //echo $max_date;
                                                               ?>
                                                             <input name="tgl_pergi" type="datetime-local" class="form-control form-control-rounded" min="<?= $min_date ?>"  required />

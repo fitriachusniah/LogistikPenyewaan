@@ -52,9 +52,13 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td><b>
 													  <?php
-				                                        if($value->stat_adm==0){
+				                                        if($value->stat_adm==0 && $value->status==0){
 				                                      ?>
-				                                          <span class="badge badge-warning">Perlu Konfirmasi</span>
+				                                          <span class="badge" style="color: #fff; background-color: 	#FF8C00;">Perlu Konfirmasi</span>
+				                                      <?php
+				                                        }else if($value->stat_adm==0 && $value->status==2){
+				                                       ?>
+				                                          <span class="badge btn-danger">Expired, Terlambat Dikonfirmasi.<br>Silahkan Input Peminjaman Baru.</span>
 				                                      <?php
 				                                        }
 				                                      ?>
@@ -65,7 +69,10 @@
 												<?php 
 													if($value->daysRemaining<0){
 														echo "passed";
-													}else{
+													}else if($value->daysRemaining==0){
+														echo "hari ini";
+													}
+													else{
 														echo $value->daysRemaining." hari lagi";
 													}
 												?>
@@ -82,12 +89,14 @@
 											</td>
 											<td><?= $value->nama_fakultas ?></td>
 											<td class="text-center">
-											
-														<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
+												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
 															<i class="nav-icon i-Eye font-weight-bold">Detail</i>
-														</a>
-														
-														 <a class="text-success" href="<?= base_url()?>admin/Sewa/terima_sewa/<?= $value->id_order ?>">
+												</a>
+
+												<?php
+				                                        if($value->stat_adm==0 && $value->status==0){
+				                                      ?>
+				                                           <a class="text-success" href="<?= base_url()?>admin/Sewa/terima_sewa/<?= $value->id_order ?>">
 								                            
 								                              <i class="nav-icon i-Yes font-weight-bold">Terima</i>
 								                            
@@ -96,6 +105,17 @@
 															<i class="nav-icon i-Close-Window font-weight-bold">Tolak</i>
 														</a>
 												
+				                                      <?php
+				                                        }else{
+				                                       ?>
+				                                       		<a class="text-danger mr-2" href="#" data-toggle="modal" href="#" data-target="#hapus<?= $value->id_order ?>">
+																<i class="nav-icon i-Close-Window font-weight-bold">Hapus</i>
+															</a>
+				                                       <?php
+				                                        }
+				                                       ?>
+				                                          
+														
 											</td>
 										</tr>
 									<?php } ?>
@@ -161,13 +181,11 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<?php
-				        if($key->stat_adm==0){
-				?>
-				            <span class="badge badge-warning">Perlu Konfirmasi</span>
+				                     
+				                                     
+				                                      
 				<?php
-				        }
-
+				       
 				        if ($key->alasan==True) {
 				        ?>
 				        	<br>Perjalanan ini perlu konfirmasi ulang karena telah <b>DITOLAK</b> oleh <b><?= $key->nama_driver ?></b><br>
@@ -247,6 +265,31 @@
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+<?php } ?>
+
+<?php foreach ($list_sewa_masuk as $key) { ?>
+	<div class="modal fade" id="hapus<?= $key->id_order ?>" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="ExampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="ExampleModalLabel">Delete Data Confirmation</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure to delete this data ?</p>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
+					<a href="<?= site_url() ?>admin/Sewa/hapus/<?= $key->id_order ?>" class="btn btn-danger">Yes</a>
 				</div>
 			</div>
 			<!-- /.modal-content -->

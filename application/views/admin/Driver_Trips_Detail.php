@@ -25,6 +25,7 @@
 										<th style="width: 15%">Tgl Keberangkatan</th>
 										<th style="width: 20%">Fakultas</th>
 										<th style="width: 10%">SPPD</th>
+										<th style="width: 10%">Total KM</th>
 										<th style="width: 10%">Rating</th>
 										<th class="text-center">Action</th>
 									</tr>
@@ -39,6 +40,7 @@
 											<td><?php $time = strtotime($value->tgl_pergi);				echo date('d F Y - H:i', $time); ?></td>
 											<td><?= $value->nama_fakultas ?></td>
 											<td>Rp<?= number_format($value->sppd,2) ?></td>
+											<td><b><?= $value->total_km ?> km</b></td>
 											<td><b><?= number_format($value->avg_rating,2) ?></b></td>
 											<td class="text-center">												
 												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">

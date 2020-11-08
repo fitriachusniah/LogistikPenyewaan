@@ -48,7 +48,7 @@ class Sewa extends CI_Controller {
 		$data = array(
 			// 'js_file'   => 'Sewa.js.php',
 			'id'				  => $id,
-			'list_sewa_masuk'     => $this->Sewa_Model->list_sewa_masuk(),
+			'sewa_masuk'     	  => $this->Sewa_Model->list_sewa_masuk_byId($id),
 			'list_mobil'		  => $this->Cars_Model->list_available($tgl_pergi),
 			'list_driver'		  => $this->Drivers_Model->list_available($tgl_pergi),
 			'terima_action'       => base_url('admin/Sewa/terima'),
@@ -57,7 +57,7 @@ class Sewa extends CI_Controller {
 		$this->load->view('admin/Terima_Sewa',$data);
 
 		//print_r($orders_by_tgl);
-		//print_r($list_driver);
+		//print_r($data['sewa_masuk']);
 	}
 
 	public function getAvailableDriver($tgl_pergi)
@@ -173,8 +173,13 @@ class Sewa extends CI_Controller {
 
 
 	public function hapus($id)
-	{
-
+	{		
+		$deleted_at       = date("Y-m-d H:i:s");
+		$this->Sewa_Model->delete_data($id,$deleted_at);
+		$notif_message = "Data berhasil dihapus";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+		redirect('admin/Sewa','refresh');
 	}
 }
 

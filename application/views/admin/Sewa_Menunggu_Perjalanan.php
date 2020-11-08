@@ -41,10 +41,10 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
 												<?php
-												if($value->stat_adm==1 && $value->stat_drv==1 && ($value->stat_cst==0 || $value->stat_cst==1)){
+												if(($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1) || ($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0)){
 												?>
 
-													<span class="badge badge-warning">Sedang Berjalan</span>
+													<span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Berjalan</span>
 
 												<?php
 												}else if($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==1){
@@ -128,10 +128,10 @@
 				<div class="modal-body">
 				
 				<?php
-												if($key->stat_adm==1 && $key->stat_drv==1 && ($key->stat_cst==0 || $key->stat_cst==1)){
+												if(($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1) || ($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0)){
 												?>
 
-													<span class="badge badge-warning">Sedang Berjalan</span>
+													<span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Berjalan</span>
 
 												<?php
 												}else if($key->stat_adm==1 && $key->stat_drv==2 && $key->stat_cst==1){
@@ -336,12 +336,16 @@
                     			?>
                     			<br>
                     			<div class="form-group">
-                                        <label for="">Km Awal</label>
+                                        <label for="">KM Awal</label>
                                         <input name="km_awal" type="number" class="form-control form-control-rounded" value="<?= $key->km_awal?>" min="1" readonly="" />
                                 </div>
                                 <div class="form-group">
-                                        <label for="">Km Akhir</label>
+                                        <label for="">KM Akhir</label>
                                         <input name="km_akhir" type="number" class="form-control form-control-rounded" value="<?= $key->km_akhir?>" min="1" readonly="" />
+                                </div>
+                                <div class="form-group">
+                                        <label for="">Total KM</label>
+                                        <input name="total_km" type="number" class="form-control form-control-rounded" value="<?= $key->total_km?>" min="1" readonly="" />
                                 </div>
 
                                 <div class="form-group">

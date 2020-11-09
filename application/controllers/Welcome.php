@@ -21,7 +21,10 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->helper('url');
+		$this->load->model('Notification_Model');
 
-		$this->load->view('welcome_message');
+		$this->Notification_Model->insertToUser('new Order', 'ada pesanan masuk', 1);
+		$this->Notification_Model->insertToRole('new Order', 'ada pesanan masuk', 1);
+		// $this->load->view('welcome_message');
 	}
 }

@@ -11,6 +11,7 @@ class Sewa extends CI_Controller {
 		$this->load->model('Drivers_Model');
 		$this->load->model('Fakultas_Model');
 		$this->load->model('Cars_Model');
+		$this->load->model('Notification_Model');
 		$this->load->helper('url');
 		date_default_timezone_set("Asia/Jakarta");
 		require 'session.php';
@@ -87,6 +88,9 @@ class Sewa extends CI_Controller {
 			'stat_adm'		=> 1,
 			'stat_drv'      => 0,
 		);
+
+		$user_id_driver = $this->db->where('id_driver', $id_driver)->get('driver')->row()->user_id;
+		$this->Notification_Model->insertToUser('New Order', 'Ada trip baru masuk ', $user_id_driver);
 
 		$this->Sewa_Model->terima_data($data,$id_order);
 		$notif_message = "Permintaan Peminjaman Mobil Diterima";
@@ -173,13 +177,25 @@ class Sewa extends CI_Controller {
 
 
 	public function hapus($id)
-	{		
+	{
 		$deleted_at       = date("Y-m-d H:i:s");
 		$this->Sewa_Model->delete_data($id,$deleted_at);
 		$notif_message = "Data berhasil dihapus";
 		$notif_action = 'success'; //success,error,warning,question
 		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('admin/Sewa','refresh');
+	}
+
+	public function getUserActiveNotif($id){
+		print_r(json_encode($this->Notification_Model->getNotificationById($id)));
+	}
+
+	public function getUserNotif($id){
+		print_r(json_encode($this->Notification_Model->getAllNotificationById($id)));
+	}
+
+	public function updateStatus($id){
+		$this->Notification_Model->updateStatusById($id);
 	}
 }
 

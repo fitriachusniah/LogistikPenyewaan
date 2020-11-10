@@ -18,7 +18,7 @@
                                         <label class="toggle" for="drop-2">Request History</label><a href="#"><i class="nav-icon mr-2 i-Data"></i> Request History</a>
                                         <input id="drop-2" type="checkbox" />
                                         <ul>
-                                            <li><a href="<?php echo base_url()?>Konsumen/Sewa/"><i class="nav-icon mr-2 i-Check"></i><span class="item-name">Lihat Data</span></a></li>
+                                            <li><a href="<?php echo base_url()?>konsumen/Sewa/"><i class="nav-icon mr-2 i-Check"></i><span class="item-name">Lihat Data</span></a></li>
                                         </ul>
                                     </div>
                                 </div>

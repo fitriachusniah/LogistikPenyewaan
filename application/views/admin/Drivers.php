@@ -37,7 +37,6 @@
 										<th>Nama Driver</th>
 										<th>No. HP</th>
 										<th>Rating(1-5)</th>
-										<th>Status</th>
 										<th class="text-center">Action</th>
 									</tr>
 								</thead>
@@ -51,20 +50,6 @@
 											<td><?= $value->nama_driver ?></td>
 											<td><?= $value->no_hp ?></td>
 											<td><?= number_format($value->avg_rating,2) ?></td>
-											<td><b>
-												 <?php
-				                                        if($value->status==1){
-				                                      ?>
-				                                          <span class="badge badge-success">Available</span>
-				                                      <?php
-				                                        }else{
-				                                      ?>
-				                                          <span class="badge badge-warning">Not Available</span>
-				                                      <?php
-				                                        }
-				                                      ?>  
-												</b>
-											</td>
 											<td class="text-center">
 												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_driver ?>">
 													<i class="nav-icon i-Eye font-weight-bold"></i>
@@ -285,17 +270,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<?php
-					if ($key->status == 1) {
-					?>
-						<span class="badge badge-success">Available</span>
-					<?php
-					} else {
-					?>
-						<span class="badge badge-warning">Booked</span>
-					<?php
-					}
-					?>
+					
 					<table>
 						<tr>
 							<td colspan="3">

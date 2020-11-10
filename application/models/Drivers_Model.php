@@ -6,7 +6,7 @@ class Drivers_Model extends CI_Model {
 
 	public function list()
 	{
-		return $this->db->query("SELECT driver.*, AVG(feedback_driver.rating) as avg_rating FROM driver
+		return $this->db->query("SELECT driver.*,users.*, AVG(feedback_driver.rating) as avg_rating FROM driver
 								 JOIN users ON users.user_id = driver.user_id
 								 LEFT JOIN order_sewa ON order_sewa.id_driver = driver.id_driver
 								 LEFT JOIN feedback_driver ON feedback_driver.id_order = order_sewa.id_order

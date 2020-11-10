@@ -154,9 +154,10 @@
 							<tr>
 								<td colspan="3">
 									<center>
-									<?php
+									<?php 
 			                          if (!$key->foto_driver) { ?>
-			                          	<img src="<?= base_url()?>assets/foto_driver/driver_default.png ?>"  width='100px'>
+			                           <img src="<?= base_url()?>assets/foto_driver/driver_default.png" width='100px'>
+			                           
 			                         <?php } else { ?>
 			                          <img src="<?= base_url()?>assets/foto_driver/<?=$key->foto_driver ?>"  width='100px'>
 			                        <?php } ?>

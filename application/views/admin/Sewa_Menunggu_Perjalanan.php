@@ -41,7 +41,7 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
 												<?php
-												if(($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1) || ($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0)){
+												if(($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1) || ($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0) || ($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0)){
 												?>
 
 													<span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Berjalan.<br>(Driver/Cust.Belum Close Trip)</span>

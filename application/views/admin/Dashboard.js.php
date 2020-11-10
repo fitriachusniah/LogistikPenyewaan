@@ -94,7 +94,7 @@
           echartBar.on('click', function (params) {
             // console.log(params);
             var id = data.id[params.dataIndex];
-            window.open('tripDetail/' + id, '_self');
+            window.open('<?= base_url() ?>admin/Dashboard/tripDetail/' + id, '_self');
           });
         } // Chart in Dashboard version 1
       });

@@ -29,7 +29,7 @@
                 <div class="dropdown">
                     <div class="user col align-self-end"><img id="userDropdown" src="<?=base_url()?>assets/images/user.png" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <div class="dropdown-header"><i class="i-Lock-User mr-1"></i> <?php echo $this->session->userdata('user_name') ?></div><!-- <a class="dropdown-item">Account settings</a> --><a class="dropdown-item" href="<?= base_url()?>Login/logout">Sign out</a>
+                            <div class="dropdown-header"><i class="i-Lock-User mr-1"></i> <?php echo $this->session->userdata('user_name') ?></div><a class="dropdown-item" href="<?= base_url()?>admin/Dashboard/update_profile/<?= $this->session->userdata('user_id') ?>">Update Profile</a><a class="dropdown-item" href="<?= base_url()?>Login/logout">Sign out</a>
                         </div>
                     </div>
                 </div>

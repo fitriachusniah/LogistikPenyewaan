@@ -7,9 +7,10 @@ class Dashboard extends CI_Controller {
 	public function __construct()
 	{
 			parent::__construct();
-	    require 'session.php';
-	    $this->load->model('Sewa_Model');
+	    	require 'session.php';
+	    	$this->load->model('Sewa_Model');
 			$this->load->model('Drivers_Model');
+			$this->load->model('Users_Model');
 			$this->load->model('Cars_Model');
 			date_default_timezone_set("Asia/Jakarta");
 	}
@@ -85,6 +86,43 @@ class Dashboard extends CI_Controller {
 		//print_r($this->Drivers_Model->getDriverById($id));
 	}
 
+	function update_profile($id){
+		$admin = $this->db->query("SELECT * FROM users WHERE user_id = '$id'")->row();
+		$data = array(
+			'user_id'			  => $admin->user_id,
+			'user_name'			  => $admin->user_name,
+			'user_password'		  => $admin->user_password,
+			'edit_action'         => base_url('admin/Dashboard/admin_edit_profile'),
+		);
+		$this->load->view('admin/Update_Profile',$data);
+		
+	}
+
+	function admin_edit_profile($id){
+
+		$admin_userid	= $this->input->post('user_id');
+		$admin_username  = $this->input->post('user_name');
+		$admin_password  = $this->input->post('user_password');
+
+		if($admin_password==''){
+			$new_psw = $this->input->post('old_psw');
+ 		}else{
+ 			$new_psw = md5($admin_password);
+ 		}
+
+		$admin_user = array(
+			'user_name'			=> $admin_username,
+			'user_password'		=> $new_psw,
+		);
+
+		$this->Users_Model->edit_data($admin_user,$admin_userid);
+
+
+		$notif_message = "Profile berhasil diubah";
+		$notif_action = 'success'; //success,error,warning,question
+		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+		redirect('admin/Dashboard', 'refresh');
+	}
 
 
 }

@@ -22,9 +22,18 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->model('Notification_Model');
+		$this->load->model('Drivers_Model');
 
-		$this->Notification_Model->insertToUser('new Order', 'ada pesanan masuk', 1);
-		$this->Notification_Model->insertToRole('new Order', 'ada pesanan masuk', 1);
+		$data = $this->Drivers_Model->getDriverLocation(2, '2020-11-16 03:59:07');
+
+		if ($data) {
+			print_r($data);
+		}else {
+			echo "tidak ada data terbaru";
+		}
+
+		// $this->Notification_Model->insertToUser('new Order', 'ada pesanan masuk', 1);
+		// $this->Notification_Model->insertToRole('new Order', 'ada pesanan masuk', 1);
 		// $this->load->view('welcome_message');
 	}
 }

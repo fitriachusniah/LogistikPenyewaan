@@ -9,6 +9,9 @@
  	<script src="<?= base_url() ?>assets/js/plugins/datatables.min.js"></script>
  	<script src="<?= base_url() ?>assets/js/scripts/datatables.script.min.js"></script>
  	<script src="<?= base_url() ?>assets/js/scripts/customizer.script.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
 
   <?php if (isset($js_file)) {
     $this->load->view('admin/'.$js_file);
@@ -26,7 +29,7 @@
     function getNotif() {
       $.get('<?= base_url() ?>/admin/Sewa/getUserNotif/<?= $_SESSION['user_id'] ?>', function(data, textStatus, xhr) {
         data = JSON.parse(data);
-        console.log(data);
+        // console.log(data);
 
         var count = 0;
         data.forEach((item, i) => {

@@ -2,7 +2,7 @@
     $(document).ready(function() {
 
       $.get('<?= base_url('admin/Dashboard/getDriverData/') ?>', function(data, textStatus, xhr) {
-        data = JSON.parse(data);
+        // data = JSON.parse(data);
 
         var max = Math.max.apply(null, data.trip);
         var min = Math.min.apply(null, data.trip);

@@ -10,6 +10,10 @@
  	<script src="<?= base_url() ?>assets/js/scripts/datatables.script.min.js"></script>
  	<script src="<?= base_url() ?>assets/js/scripts/customizer.script.min.js"></script>
 
+  <?php if (isset($js_file)) {
+    $this->load->view('driver/'.$js_file);
+  } ?>
+
   <script type="text/javascript">
     $(document).ready(function() {
       getNotif();
@@ -22,7 +26,7 @@
     function getNotif() {
       $.get('<?= base_url() ?>/admin/Sewa/getUserNotif/<?= $_SESSION['user_id'] ?>', function(data, textStatus, xhr) {
         data = JSON.parse(data);
-        console.log(data);
+        // console.log(data);
 
         var count = 0;
         data.forEach((item, i) => {
@@ -70,6 +74,47 @@
 
       return hours + " hours " + minutes + " minutes ago";
     }
+
+    // ================== function for tracking driver ================================
+
+    var id_driver = '<?= $_SESSION['id']; ?>';
+
+  	$.get('<?= base_url() ?>driver/Dashboard/isDriving/' + id_driver, function(data, textStatus, xhr) {
+  			console.log(data);
+
+  			if (data == 1) {
+  				if (navigator.geolocation) {
+  					console.log('navigator.geolocation works');
+  					console.log("start tracking driver");
+  					navigator.geolocation.watchPosition(sendData, errorCallback);
+  				} else {
+  					// document.write(' FATAL - ERROR navigator.geolocation need to be enabled ');
+  					console.log(' FATAL - ERROR navigator.geolocation need to be enabled ');
+  					alert('tidak dapat mengakses lokasi');
+  				}
+  			}else {
+  				// console.log("driver not in a trip");
+  			}
+
+  	});
+
+  	function sendData(position) {
+  		console.log(position);
+
+  		var payload = {
+  			id_driver: id_driver,
+  			latitude: position.coords.latitude,
+  			longitude: position.coords.longitude
+  		}
+
+  		$.post('<?= base_url() ?>driver/Dashboard/updateNewLocation', payload, function(data, textStatus, xhr) {
+  			console.log("update result : "+data);
+  		});
+  	}
+
+  	function errorCallback(err) {
+  		console.log(err);
+  	}
   </script>
  	</body>
 

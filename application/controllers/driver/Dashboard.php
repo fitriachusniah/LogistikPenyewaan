@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller {
 		$data = array(
 			'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_menunggu_perjalanan($id),
 			'close_trip_action'   => base_url('driver/Dashboard/close_trip'),
-
+			
 
 		);
 
@@ -78,7 +78,7 @@ class Dashboard extends CI_Controller {
 			$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 			redirect('driver/Dashboard/Menunggu_Perjalanan', 'refresh');
 		}
-		
+
 		// echo "$km_awal";
 		// print_r($km_awal_sebelumnya);
 	}
@@ -126,7 +126,7 @@ class Dashboard extends CI_Controller {
 			// echo "benar";
 		}
 
-		
+
 	}
 
 	function update_profile($id){
@@ -198,6 +198,35 @@ class Dashboard extends CI_Controller {
 		$notif_action = 'success'; //success,error,warning,question
 		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
 		redirect('driver/Dashboard', 'refresh');
+	}
+
+	public function updateNewLocation(){
+		date_default_timezone_set('Asia/Jakarta');
+		// print_r($_POST);
+		$data['latitude'] = $_POST['latitude'];
+		$data['longitude'] = $_POST['longitude'];
+		$data['gps_update_time'] = date("Y-m-d H:i:s");
+
+		$update = $this->Drivers_Model->updateNewLocation($_POST['id_driver'], $data);
+
+		if ($update) {
+			echo "1";
+		}else {
+			echo "0";
+		}
+	}
+
+	public function isDriving($id){
+			$data = $this->db->select('id_order')->from('order_sewa')
+											 ->where('id_driver', $id)
+											 ->where('stat_drv', 1)
+											 ->get()->row();
+
+			if ($data) {
+				echo 1;
+			}else {
+				echo 0;
+			}
 	}
 
 

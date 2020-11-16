@@ -11,7 +11,7 @@
 			</ul>
 		</div>
 		<div class="separator-breadcrumb border-top"></div>
-		
+
 
 		<div class="row">
 			<div class="col-md-12 mb-4">
@@ -53,10 +53,10 @@
 												<?php
 												}
 												?>
-												
+
 											</td>
 											<td>
-												<?php 
+												<?php
 													if($value->daysRemaining<0){
 														echo "passed";
 													}else if($value->daysRemaining==0){
@@ -71,16 +71,19 @@
 											<td><?php $time = strtotime($value->tgl_pulang);				echo date('d F Y - H:i', $time); ?></td>
 											<td><?= $value->nama_fakultas ?></td>
 											<td><?= $value->jml_penumpang ?> org</td>
-											<td class="text-center">												
+											<td class="text-center">
 												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
 													<i class="nav-icon i-Eye font-weight-bold">Detail</i>
+												</a>
+												<a class="text-info mr-2" href="#">
+													<i class="nav-icon i-Map font-weight-bold">-lacak</i>
 												</a>
 												<?php
 				                                      if($value->stat_drv==2 && $value->stat_cst==1){
 				                                       ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#close_trip<?= $value->id_order ?>">
 															<i class="nav-icon i-Yes font-weight-bold">Close Trip</i>
-														</a>	                                    
+														</a>
 				                                      <?php
 				                                        }
 				                                      ?>
@@ -126,7 +129,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-				
+
 				<?php
 												if(($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1) || ($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0)){
 												?>
@@ -140,7 +143,7 @@
 												<?php
 												}
 												?>
-				        
+
 				<table>
 						<tr>
 							<td>KAUR Fakultas</td>
@@ -166,12 +169,12 @@
 							<td>Durasi</td>
 							<td>:</td>
 							<td><b>
-								<?php 
-									
+								<?php
+
 									$hourdiff = round((strtotime($key->tgl_pulang) - strtotime($key->tgl_pergi))/3600, 1);
 									echo $hourdiff." jam";
 							 	?>
-							 
+
 							 </b>
 							</td>
 						</tr>
@@ -194,9 +197,9 @@
 							<td>Catatan Khusus</td>
 							<td>:</td>
 							<td>
-								<?php 
+								<?php
 									if($key->note != Null){
-										echo $key->note;	
+										echo $key->note;
 									}else{
 										echo "-";
 									}
@@ -208,9 +211,9 @@
 							<td>Mobil</td>
 							<td>:</td>
 							<td>
-								<?php 
+								<?php
 									if($key->id_mobil != Null){
-										echo $key->merk_mobil;	
+										echo $key->merk_mobil;
 									}else{
 										echo "-";
 									}
@@ -222,9 +225,9 @@
 							<td><b>Driver</b></td>
 							<td>:</td>
 							<td>
-								<?php 
+								<?php
 									if($key->id_driver != Null){
-										echo "<b>".$key->nama_driver."</b>";	
+										echo "<b>".$key->nama_driver."</b>";
 									}else{
 										echo "-";
 									}
@@ -236,9 +239,9 @@
 							<td><b>No.HP Driver</b></td>
 							<td>:</td>
 							<td>
-								<?php 
+								<?php
 									if($key->id_driver != Null){
-										echo "<b>".$key->no_hp."</b>";	
+										echo "<b>".$key->no_hp."</b>";
 									}else{
 										echo "-";
 									}
@@ -250,9 +253,9 @@
 							<td>Cost Perjalanan</td>
 							<td>:</td>
 							<td>
-								<?php 
+								<?php
 									if($key->cost != Null){
-										echo "Rp".number_format($key->cost,2);	
+										echo "Rp".number_format($key->cost,2);
 									}else{
 										echo "-";
 									}
@@ -260,9 +263,9 @@
 
 							</td>
 						</tr>
-						
+
 					</table>
-					
+
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
@@ -297,7 +300,7 @@
                     						<tr>
 												<td colspan="3">
 													<center>
-													<?php 
+													<?php
 							                          if (!$key->foto_driver) { ?>
 							                         	<img id="userDropdown" src="<?= base_url()?>assets/foto_driver/driver_default.png" width="100px" />
 							                         <?php } else { ?>
@@ -310,9 +313,9 @@
 												<td><b>Driver</b></td>
 												<td>:</td>
 												<td>
-													<?php 
+													<?php
 														if($key->id_driver != Null){
-															echo "<b>".$key->nama_driver."</b>";	
+															echo "<b>".$key->nama_driver."</b>";
 														}else{
 															echo "-";
 														}
@@ -384,7 +387,7 @@
 	<div class="search-title">
 		<span class="text-muted">Search results</span>
 	</div>
-	
+
 	<!-- PAGINATION CONTROL -->
 	<div class="col-md-12 mt-5 text-center">
 		<nav aria-label="Page navigation example">

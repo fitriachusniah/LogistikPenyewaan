@@ -19,7 +19,7 @@ class Drivers_Model extends CI_Model {
 	public function getDriverById($id)
 	{
 		return $this->db->query("SELECT driver.*, order_sewa.*, feedback_driver.*, fakultas.*, mobil.*, AVG(feedback_driver.rating) as avg_rating
-								 FROM order_sewa 
+								 FROM order_sewa
 								 JOIN fakultas ON order_sewa.id_fakultas = fakultas.fakultas_id
 								 JOIN mobil ON order_sewa.id_mobil = mobil.id_mobil
 								 JOIN driver ON order_sewa.id_driver = driver.id_driver
@@ -91,6 +91,18 @@ class Drivers_Model extends CI_Model {
 								 JOIN users ON users.user_id = driver.user_id
 								 ORDER BY driver.id_driver ASC
 								")->result();
+	}
+
+	public function getDriverLocation($id, $last_update_time){
+		return $this->db->select("latitude, longitude, gps_update_time, id_driver")
+					 ->from('driver')
+					 ->where('id_driver', $id)
+					 ->where('gps_update_time >', $last_update_time)
+					 ->get()->row();
+	}
+
+	public function updateNewLocation($id, $data){
+			return $this->db->where('id_driver', $id)->update('driver', $data);
 	}
 
 }

@@ -130,6 +130,13 @@ class Sewa extends CI_Controller {
 
 	function tolak($id){
 		$this->db->query("UPDATE order_sewa SET stat_adm = 5 WHERE id_order = '$id'");
+
+		$id_fakultas = $this->db->where('id_order', $id)->get('order_sewa')->row()->id_fakultas;
+		$tgl = $this->db->where('id_order', $id)->get('order_sewa')->row()->tgl_pergi;
+
+		$user_id_fakultas = $this->db->where('fakultas_id', $id_fakultas)->get('fakultas')->row()->user_id;
+		$this->Notification_Model->insertToUser('Permintaan Ditolak', 'Permintaan Peminjaman tanggal '.$tgl.' ditolak', $user_id_fakultas);
+
 		$notif_message = "Permintaan Peminjaman Mobil Ditolak";
 		$notif_action = 'success'; //success,error,warning,question
 		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");

@@ -13,7 +13,18 @@
             </div> -->
             <div style="margin: auto"></div>
             <div class="header-part-right">
-        
+
+                <!-- Notificaiton-->
+                <div class="dropdown">
+                    <div class="badge-top-container" id="dropdownNotification" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="badge badge-primary" id="count-notif"></span><i class="i-Bell text-muted header-icon"></i>
+                                        </div>
+                    <!-- Notification dropdown-->
+                    <div id="notif-container" class="dropdown-menu dropdown-menu-right notification-dropdown rtl-ps-none" aria-labelledby="dropdownNotification" data-perfect-scrollbar="" data-suppress-scroll-x="true">
+                        
+                    </div>
+                </div>
+                <!-- Notificaiton End-->        
                 <!-- User avatar dropdown-->
                 <div class="dropdown">
                     <div class="user col align-self-end"><img id="userDropdown" src="<?=base_url()?>assets/images/user.png" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />

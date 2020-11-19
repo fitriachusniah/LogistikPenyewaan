@@ -62,7 +62,7 @@ class Drivers_Model extends CI_Model {
 
     public function getDriversTotal()
 	{
-		return $this->db->query("SELECT COUNT(id_driver) as jmlDriver FROM driver")->row();
+		return $this->db->query("SELECT COUNT(id_driver) as jmlDriver FROM driver WHERE driver.deleted_at IS NULL")->row();
 	}
 
 	public function getAllDriverTrip()

@@ -38,6 +38,7 @@
 										<th>Nama KAUR</th>
 										<th>Jabatan</th>
 										<th>No. HP</th>
+										<th>Username</th>
 										<th class="text-center">Action</th>
 									</tr>
 								</thead>
@@ -52,6 +53,7 @@
 											<td><?= $value->nama_kaur ?></td>
 											<td><?= $value->jabatan ?></td>
 											<td><?= $value->no_hp ?></td>
+											<td><b><?= $value->user_name ?></b></td>
 											<td class="text-center">
 												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#edit<?= $value->fakultas_id ?>">
 													<i class="nav-icon i-Pen-2 font-weight-bold"></i>
@@ -136,7 +138,7 @@
 		                          name="user_name"
 		                          type="text"
 		                          class="form-control form-control-rounded"
-		                          placeholder="Set Username Akun Driver"
+		                          placeholder="Set Username Akun Fakultas"
 		                          required
 		                        />
 		                      </div>
@@ -148,7 +150,7 @@
 		                          name="user_password"
 		                          type="password"
 		                          class="form-control form-control-rounded"
-		                          placeholder="Set Password Akun Driver"
+		                          placeholder="Set Password Akun Fakultas"
 		                          required
 		                        />
 		                      </div>
@@ -258,6 +260,31 @@
 									<input name="no_hp" type="text" class="form-control form-control-rounded" value="<?= $key->no_hp ?>" required />
 								</div>
 							</div>
+								<div class="col-md-6">
+				                      <div class="form-group">
+				                        <label for="">Ubah Username(optional)</label>
+				                        <input
+				                          name="user_name"
+				                          type="text"
+				                          class="form-control form-control-rounded"
+				                          value="<?= $key->user_name ?>"
+				                          required
+				                        />
+				                      </div>
+				            </div>
+				            <div class="col-md-6">
+				                       <div class="form-group">
+				                        <label for="">Ubah Password(optional)</label>
+				                        <input
+				                          name="user_password"
+				                          type="password"
+				                          class="form-control form-control-rounded"
+				                          				                          
+				                        />
+				                        <input type="hidden" name="old_psw" value="<?= $key->user_password ?>">
+				                        <input type="hidden" name="user_id" value="<?= $key->user_id ?>">
+				                      </div>
+				            </div>
 							
 						</div>
 						<b>bertanda (*) harus diisi</b>

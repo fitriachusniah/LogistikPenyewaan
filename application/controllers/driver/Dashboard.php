@@ -19,22 +19,23 @@ class Dashboard extends CI_Controller {
 
 		$data = array(
 			'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_masuk($id),
+			'list_sedang_berjalan'     => $this->Sewa_Model->driver_list_sewa_menunggu_perjalanan($id),
 		);
 
 		$this->load->view('driver/Dashboard',$data);
 	}
 
-	function menunggu_perjalanan(){
-		$id = $this->session->userdata('id');
-		$data = array(
-			'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_menunggu_perjalanan($id),
-			'close_trip_action'   => base_url('driver/Dashboard/close_trip'),
+	// function menunggu_perjalanan(){
+	// 	$id = $this->session->userdata('id');
+	// 	$data = array(
+	// 		'list_sewa_masuk'     => $this->Sewa_Model->driver_list_sewa_menunggu_perjalanan($id),
+	// 		'close_trip_action'   => base_url('driver/Dashboard/close_trip'),
 			
 
-		);
+	// 	);
 
-		$this->load->view('driver/List_Menunggu_Perjalanan',$data);
-	}
+	// 	$this->load->view('driver/List_Menunggu_Perjalanan',$data);
+	// }
 
 	function selesai(){
 		$id = $this->session->userdata('id');
@@ -76,7 +77,7 @@ class Dashboard extends CI_Controller {
 			$notif_message = "Perjalanan berhasil diterima";
 			$notif_action = 'success'; //success,error,warning,question
 			$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
-			redirect('driver/Dashboard/Menunggu_Perjalanan', 'refresh');
+			redirect('driver/Dashboard', 'refresh');
 		}
 
 		// echo "$km_awal";

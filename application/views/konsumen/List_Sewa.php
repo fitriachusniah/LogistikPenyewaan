@@ -4,9 +4,8 @@
 <div class="main-content-wrap d-flex flex-column">
 	<div class="main-content">
 		<div class="breadcrumb">
-			<h1 class="mr-2">History</h1>
+			<h1 class="mr-2">Data</h1>
 			<ul>
-				<li>History</li>
 				<li>Pengajuan Peminjaman Mobil</li>
 			</ul>
 		</div>
@@ -68,7 +67,7 @@
 				                                      ?>
 				                                          <span class="badge badge-success">Anda Belum Memasukkan Rating</span>
 				                                      <?php
-				                                        }else if(($value->status_order==1 || $value->status_order==0) AND $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
+				                                        }else if(($value->status_order==1 || $value->status_order==0) AND ($value->stat_adm==1 || $value->stat_adm==2 ) && ($value->stat_drv==1 || $value->stat_drv==2 ) && $value->stat_cst==1){
 				                                      ?>
 				                                          <span class="badge badge-success">Selesai</span>
 				                                      <?php
@@ -89,20 +88,15 @@
 													<i class="nav-icon i-Eye font-weight-bold">Detail</i>
 												</a>
 												<?php
-				                                      if($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0){
+				                                      if($value->stat_cst==0 && $value->stat_adm=='1' && ($value->stat_drv=='1' || $value->stat_drv=='2')){
 				                                       ?>
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
 															<i class="nav-icon i-Yes font-weight-bold">Close dan beri rating</i>
 														</a>
 				                                      <?php
-				                                        }else if($value->status==1 && $value->stat_adm==1 && ($value->stat_drv==1 || $value->stat_drv==2) && $value->stat_cst==0){
-				                                      ?>
-				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#rate<?= $value->id_order ?>">
-															<i class="nav-icon i-Yes font-weight-bold">Beri Rating</i>
-														</a>
-				                                      <?php
 				                                        }
 				                                      ?>
+				                                        
 
 											</td>
 										</tr>

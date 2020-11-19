@@ -24,8 +24,8 @@
                                     <?php
                                         }else{
                                     ?>
-                                            <button disabled class="btn btn-default btn-rounded" type="button" data-toggle="modal" data-target="#addSewa" style="padding: 25px 40px; font-weight: 50%; color:#000;">
-                                            Anda tidak dapat meminjam mobil karena belum memberikan rating.
+                                            <button disabled class="btn btn-danger btn-rounded" type="button" data-toggle="modal" data-target="#addSewa" style="width: 100%; font-weight: 50%; color:#fff; ">
+                                            Anda tidak dapat meminjam mobil. <br> <a href="<?=base_url('konsumen/Sewa')?>">Klik Disini</a> untuk memberi rating
                                             </button><br>
 
                                     <?php

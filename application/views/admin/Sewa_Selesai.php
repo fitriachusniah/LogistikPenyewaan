@@ -173,7 +173,14 @@
 							<td>Total KM</td>
 							<td>:</td>
 							<td>
-								<b><?= $key->total_km?> km</b>
+								<?php 
+									if($key->total_km != Null){
+										echo "<b>".$key->total_km." km</b>";	
+									}else{
+										echo "-";
+									}
+								?>
+
 
 							</td>
 						</tr>
@@ -235,6 +242,19 @@
 												<td><?= $key->komentar ?></td>
 											</tr>
                     					
+                    			<?php
+                    				}else{
+                    			?>
+                    					<tr>
+												<td><b>Rating</b></td>
+												<td>:</td>
+												<td>-</td>
+											</tr>
+											<tr>
+												<td><b>Komentar</b></td>
+												<td>:</td>
+												<td>-</td>
+											</tr>
                     			<?php
                     				}
                     			?>

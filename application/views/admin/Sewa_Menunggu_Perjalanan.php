@@ -40,19 +40,7 @@
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td>
-												<?php
-												if(($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1) || ($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==0) || ($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0)){
-												?>
-
-													<span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Berjalan.<br>(Driver/Cust.Belum Close Trip)</span>
-
-												<?php
-												}else if($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==1){
-												?>
-													<span class="badge badge-success">Trip Selesai, Menunggu Close</span>
-												<?php
-												}
-												?>
+												<span class="badge" style="color: #fff; background-color: 	#FF8C00;">Menunggu Close</span>
 
 											</td>
 											<td>
@@ -78,15 +66,11 @@
 												<a class="text-info mr-2" href="#">
 													<i class="nav-icon i-Map font-weight-bold">-lacak</i>
 												</a>
-												<?php
-				                                      if($value->stat_drv==2 && $value->stat_cst==1){
-				                                       ?>
+												
 				                                          <a class="text-warning mr-2" href="#" data-toggle="modal" data-target="#close_trip<?= $value->id_order ?>">
 															<i class="nav-icon i-Yes font-weight-bold">Close Trip</i>
 														</a>
-				                                      <?php
-				                                        }
-				                                      ?>
+				                                      
 											</td>
 										</tr>
 									<?php } ?>
@@ -129,21 +113,6 @@
 					</button>
 				</div>
 				<div class="modal-body">
-
-				<?php
-												if(($value->stat_adm==1 && $value->stat_drv==1 && $value->stat_cst==1) || ($value->stat_adm==1 && $value->stat_drv==2 && $value->stat_cst==0)){
-												?>
-
-													<span class="badge" style="color: #fff; background-color: 	#FF8C00;">Sedang Berjalan</span>
-
-												<?php
-												}else if($key->stat_adm==1 && $key->stat_drv==2 && $key->stat_cst==1){
-												?>
-													<span class="badge badge-success">Trip Selesai, Menunggu Close</span>
-												<?php
-												}
-												?>
-
 				<table>
 						<tr>
 							<td>KAUR Fakultas</td>
@@ -292,65 +261,9 @@
                 <div class="modal-body">
                     <p>Yakin untuk close trip ini ?</p>
                     <div class="col-md-9">
-                    			<?php
-                    				if($key->id_feedback==True){
-                    			?>
-
-                    					<table>
-                    						<tr>
-												<td colspan="3">
-													<center>
-													<?php
-							                          if (!$key->foto_driver) { ?>
-							                         	<img id="userDropdown" src="<?= base_url()?>assets/foto_driver/driver_default.png" width="100px" />
-							                         <?php } else { ?>
-							                          <img src="<?= base_url()?>assets/foto_driver/<?=$key->foto_driver ?>"  width='100px'>
-							                        <?php } ?>
-							                        </center>
-												</td>
-											</tr>
-											<tr>
-												<td><b>Driver</b></td>
-												<td>:</td>
-												<td>
-													<?php
-														if($key->id_driver != Null){
-															echo "<b>".$key->nama_driver."</b>";
-														}else{
-															echo "-";
-														}
-													?>
-
-												</td>
-											</tr>
-											<tr>
-												<td>Rating</td>
-												<td>:</td>
-												<td><?= number_format($key->rating,2) ?></td>
-											</tr>
-											<tr>
-												<td>Komentar</td>
-												<td>:</td>
-												<td><?= $key->komentar ?></td>
-											</tr>
-                    					</table>
-                    			<?php
-                    				}
-                    			?>
+                    			
                     			<br>
-                    			<div class="form-group">
-                                        <label for="">KM Awal</label>
-                                        <input name="km_awal" type="number" class="form-control form-control-rounded" value="<?= $key->km_awal?>" min="1" readonly="" />
-                                </div>
-                                <div class="form-group">
-                                        <label for="">KM Akhir</label>
-                                        <input name="km_akhir" type="number" class="form-control form-control-rounded" value="<?= $key->km_akhir?>" min="1" readonly="" />
-                                </div>
-                                <div class="form-group">
-                                        <label for="">Total KM</label>
-                                        <input name="total_km" type="number" class="form-control form-control-rounded" value="<?= $key->total_km?>" min="1" readonly="" />
-                                </div>
-
+                    			
                                 <div class="form-group">
                                         <label for="">Cost(Rp)</label>
                                         <input name="cost" type="number" class="form-control form-control-rounded" value="<?= $key->cost ?>" min="1"  />

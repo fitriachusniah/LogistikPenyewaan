@@ -20,7 +20,7 @@ class Sewa_Model extends CI_Model {
 
 	public function konsumen_selesai($id)
 	{
-		return $this->db->query("SELECT COUNT(id_order) as jmlSelesai FROM order_sewa WHERE status = '1' AND id_fakultas='$id'")->row();
+		return $this->db->query("SELECT COUNT(id_order) as jmlSelesai FROM order_sewa WHERE status = '1' AND id_fakultas='$id' AND stat_cst= '1'")->row();
 	}
 
 	public function konsumen_ditolak($id)
@@ -75,13 +75,12 @@ class Sewa_Model extends CI_Model {
 
 	public function list_sewa_menunggu_perjalanan()
 	{
-		return $this->db->query("SELECT order_sewa.*,fakultas.*,driver.*,mobil.*, DATEDIFF(tgl_pergi,CURRENT_DATE()) as daysRemaining, feedback_driver.*
+		return $this->db->query("SELECT order_sewa.*,fakultas.*,driver.*,mobil.*, DATEDIFF(tgl_pergi,CURRENT_DATE()) as daysRemaining
 								 FROM order_sewa
 								 JOIN fakultas ON order_sewa.id_fakultas = fakultas.fakultas_id
 								 LEFT JOIN driver ON order_sewa.id_driver = driver.id_driver
 								 LEFT JOIN mobil ON order_sewa.id_mobil = mobil.id_mobil
-								 LEFT JOIN feedback_driver ON order_sewa.id_order = feedback_driver.id_order
-								 WHERE order_sewa.status = '0' AND order_sewa.stat_adm = '1' AND (order_sewa.stat_drv = '1' OR order_sewa.stat_drv = '2') AND (order_sewa.stat_cst = '1' OR order_sewa.stat_cst = '0')
+								 WHERE order_sewa.status = '0' AND order_sewa.stat_adm = '1' 
  								 ORDER BY tgl_pergi ASC
 								")->result();
 	}
@@ -94,7 +93,7 @@ class Sewa_Model extends CI_Model {
 								 LEFT JOIN driver ON order_sewa.id_driver = driver.id_driver
 								 LEFT JOIN mobil ON order_sewa.id_mobil = mobil.id_mobil
 								 LEFT JOIN feedback_driver ON order_sewa.id_order = feedback_driver.id_order
-								 WHERE order_sewa.status = '1' AND order_sewa.stat_adm = '1' AND order_sewa.stat_drv = '2' AND order_sewa.stat_cst = '1'
+								 WHERE order_sewa.status = '1' AND order_sewa.stat_adm = '2'
  								 ORDER BY tgl_pergi ASC
 								")->result();
 	}

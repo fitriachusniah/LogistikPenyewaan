@@ -32,47 +32,57 @@ class Drivers extends CI_Controller {
 		$driver_username  = $this->input->post('user_name');
 		$driver_password  = $this->input->post('user_password');
 
-		$driver_user = array(
-			'user_name'			=> $driver_username,
-			'user_email'		=> '',
-			'user_password'		=> md5($driver_password),
-			'role_id'			=> 2,						
-		);
-		$this->Users_Model->input_data($driver_user,'users');
-		$lastid = $this->db->insert_id();
-
-		//print $lastid;
-
-			$config['upload_path'] = "./assets/foto_driver/";
-			$config['allowed_types'] = "gif|jpg|png";
-			$config['max_size'] = 10000;
-			$config['encrypt_name'] = TRUE;
-			$this->load->library('upload',$config);
-
-			if ($this->upload->do_upload('foto_driver')) {
-				$foto_driver = $this->upload->data();
-
-				$data = array(
-					'nama_driver' 		=> $nama_driver,     
-					'no_hp' 		    => $no_hp,   
-					'foto_driver'		=> $foto_driver['file_name'],
-					'user_id'			=> $lastid,
+		$same_username = $this->db->query("SELECT * FROM users WHERE user_name = '$driver_username'")->row();
+		if(!$same_username){
+				$driver_user = array(
+					'user_name'			=> $driver_username,
+					'user_email'		=> '',
+					'user_password'		=> md5($driver_password),
+					'role_id'			=> 2,						
 				);
+				$this->Users_Model->input_data($driver_user,'users');
+				$lastid = $this->db->insert_id();
 
-			}else{
-				$data = array(
-					'nama_driver' 		=> $nama_driver,     
-					'no_hp' 		    => $no_hp,   
-					'user_id'			=> $lastid,
-				);
-			}
-			
+				//print $lastid;
 
-		$this->Drivers_Model->input_data($data,'driver');
-		$notif_message = "Data Driver berhasil ditambahkan";
-		$notif_action = 'success'; //success,error,warning,question
-		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
-		redirect('admin/Drivers', 'refresh');
+					$config['upload_path'] = "./assets/foto_driver/";
+					$config['allowed_types'] = "gif|jpg|png";
+					$config['max_size'] = 10000;
+					$config['encrypt_name'] = TRUE;
+					$this->load->library('upload',$config);
+
+					if ($this->upload->do_upload('foto_driver')) {
+						$foto_driver = $this->upload->data();
+
+						$data = array(
+							'nama_driver' 		=> $nama_driver,     
+							'no_hp' 		    => $no_hp,   
+							'foto_driver'		=> $foto_driver['file_name'],
+							'user_id'			=> $lastid,
+						);
+
+					}else{
+						$data = array(
+							'nama_driver' 		=> $nama_driver,     
+							'no_hp' 		    => $no_hp,   
+							'user_id'			=> $lastid,
+						);
+					}
+					
+
+				$this->Drivers_Model->input_data($data,'driver');
+				$notif_message = "Data Driver berhasil ditambahkan";
+				$notif_action = 'success'; //success,error,warning,question
+				$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+				redirect('admin/Drivers', 'refresh');
+		}else{
+				$notif_message = "Username sudah digunakan, silahkan ulangi.";
+				$notif_action = 'error'; //success,error,warning,question
+				$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+				redirect('admin/Drivers', 'refresh');
+		}
+
+		
 		
 	}
 
@@ -81,17 +91,41 @@ class Drivers extends CI_Controller {
 		$nama_driver      = $this->input->post('nama_driver');
 		$no_hp            = $this->input->post('no_hp');
 
-		// $updated_at       = date("Y-m-d H:i:s");
- 
-		$data = array(
-			'nama_driver' 		=> $nama_driver,     
-			'no_hp' 		    => $no_hp,   
-		);
-		$this->Drivers_Model->edit_data($data,$id_driver);
-		$notif_message = "Data Driver berhasil diubah";
-		$notif_action = 'success'; //success,error,warning,question
-		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
-		redirect('admin/Drivers', 'refresh');
+		$driver_userid	  = $this->input->post('user_id');
+		$driver_username  = $this->input->post('user_name');
+		$driver_password  = $this->input->post('user_password');
+
+		$same_username = $this->db->query("SELECT * FROM users WHERE user_name = '$driver_username'")->row();
+		if(!$same_username){
+			if($driver_password==''){
+				$new_psw = $this->input->post('old_psw');
+	 		}else{
+	 			$new_psw = md5($driver_password);
+	 		}
+			$driver_user = array(
+				'user_name'			=> $driver_username,
+				'user_password'		=> $new_psw,
+			);
+
+			$this->Users_Model->edit_data($driver_user,$driver_userid);
+	 
+			$data = array(
+				'nama_driver' 		=> $nama_driver,     
+				'no_hp' 		    => $no_hp,   
+			);
+			$this->Drivers_Model->edit_data($data,$id_driver);
+			$notif_message = "Data Driver berhasil diubah";
+			$notif_action = 'success'; //success,error,warning,question
+			$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+			redirect('admin/Drivers', 'refresh');
+		}else{
+				$notif_message = "Username sudah digunakan, silahkan ulangi.";
+				$notif_action = 'error'; //success,error,warning,question
+				$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+				redirect('admin/Drivers', 'refresh');
+		}
+
+		
 	}
 
 

@@ -67,7 +67,7 @@
 		                            <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
 		                            <div class="col-md-6">
 				                      <div class="form-group">
-				                        <label for="">Username</label>
+				                        <label for="">Ubah Username(optional)</label>
 				                        <input
 				                          name="user_name"
 				                          type="text"

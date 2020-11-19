@@ -34,31 +34,41 @@ class Fakultas extends CI_Controller {
 		$fakultas_username  = $this->input->post('user_name');
 		$fakultas_password  = $this->input->post('user_password');
 
-		$fakultas_user = array(
-			'user_name'			=> $fakultas_username,
-			'user_email'		=> '',
-			'user_password'		=> md5($fakultas_password),
-			'role_id'			=> 3,
-		);
-		$this->Users_Model->input_data($fakultas_user,'users');
-		$lastid = $this->db->insert_id();
+		$same_username = $this->db->query("SELECT * FROM users WHERE user_name = '$fakultas_username'")->row();
+		if(!$same_username){
+			$fakultas_user = array(
+				'user_name'			=> $fakultas_username,
+				'user_email'		=> '',
+				'user_password'		=> md5($fakultas_password),
+				'role_id'			=> 3,
+			);
+			$this->Users_Model->input_data($fakultas_user,'users');
+			$lastid = $this->db->insert_id();
 
-		//print $lastid;
-		$data = array(
-			'nama_fakultas' => $nama_fakultas,
-			'nama_kaur' 	=> $nama_kaur,
-			'jabatan' 		=> $jabatan,
-			'no_hp' 		=> $no_hp,
-			'user_id'		=> $lastid,
-		);
+			//print $lastid;
+			$data = array(
+				'nama_fakultas' => $nama_fakultas,
+				'nama_kaur' 	=> $nama_kaur,
+				'jabatan' 		=> $jabatan,
+				'no_hp' 		=> $no_hp,
+				'user_id'		=> $lastid,
+			);
 
 
-		$this->Fakultas_Model->input_data($data,'fakultas');
+			$this->Fakultas_Model->input_data($data,'fakultas');
 
-		$notif_message = "Data Fakultas berhasil ditambahkan";
-		$notif_action = 'success'; //success,error,warning,question
-		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
-		redirect('admin/Fakultas', 'refresh');
+			$notif_message = "Data Fakultas berhasil ditambahkan";
+			$notif_action = 'success'; //success,error,warning,question
+			$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+			redirect('admin/Fakultas', 'refresh');
+		}else{
+				$notif_message = "Username sudah digunakan, silahkan ulangi.";
+				$notif_action = 'error'; //success,error,warning,question
+				$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+				redirect('admin/Fakultas', 'refresh');
+		}
+
+		
 
 	}
 
@@ -69,19 +79,45 @@ class Fakultas extends CI_Controller {
 		$jabatan	      = $this->input->post('jabatan');
 		$no_hp            = $this->input->post('no_hp');
 
-		$data = array(
-			'nama_fakultas' => $nama_fakultas,
-			'nama_kaur' 	=> $nama_kaur,
-			'jabatan' 		=> $jabatan,
-			'no_hp' 		=> $no_hp,
-		);
-		$this->Fakultas_Model->edit_data($data,$id_fakultas);
+		$fakultas_userid	  = $this->input->post('user_id');
+		$fakultas_username  = $this->input->post('user_name');
+		$fakultas_password  = $this->input->post('user_password');
+
+		$same_username = $this->db->query("SELECT * FROM users WHERE user_name = '$fakultas_username'")->row();
+		if(!$same_username){
+				if($fakultas_password==''){
+					$new_psw = $this->input->post('old_psw');
+		 		}else{
+		 			$new_psw = md5($fakultas_password);
+		 		}
+				$driver_user = array(
+					'user_name'			=> $fakultas_username,
+					'user_password'		=> $new_psw,
+				);
+
+				$this->Users_Model->edit_data($driver_user,$fakultas_userid);
+
+				$data = array(
+					'nama_fakultas' => $nama_fakultas,
+					'nama_kaur' 	=> $nama_kaur,
+					'jabatan' 		=> $jabatan,
+					'no_hp' 		=> $no_hp,
+				);
+				$this->Fakultas_Model->edit_data($data,$id_fakultas);
 
 
-		$notif_message = "Data Fakultas berhasil diubah";
-		$notif_action = 'success'; //success,error,warning,question
-		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
-		redirect('admin/Fakultas', 'refresh');
+				$notif_message = "Data Fakultas berhasil diubah";
+				$notif_action = 'success'; //success,error,warning,question
+				$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+				redirect('admin/Fakultas', 'refresh');
+		}else{
+				$notif_message = "Username sudah digunakan, silahkan ulangi.";
+				$notif_action = 'error'; //success,error,warning,question
+				$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");
+				redirect('admin/Fakultas', 'refresh');
+		}
+
+			
 	}
 
 

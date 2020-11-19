@@ -7,7 +7,8 @@ class Fakultas_Model extends CI_Model {
 	public function list()
 	{
 		return $this->db->query("SELECT * FROM fakultas
-								WHERE fakultas.deleted_at IS NULL
+								 JOIN users ON users.user_id = fakultas.user_id
+								 WHERE fakultas.deleted_at IS NULL
 								 ORDER BY fakultas.fakultas_id
 								")->result();
 	}

@@ -15,7 +15,11 @@ class Dashboard extends CI_Controller {
 
 	function index(){
 		$fakultas_id = $this->session->userdata('id');
-		$cek_pinjaman = $this->db->query("SELECT * FROM order_sewa WHERE id_fakultas = '$fakultas_id' AND stat_cst='0' AND stat_adm='1' AND (stat_drv='1' OR stat_drv='2') ")->row();
+		$cek_pinjaman = $this->db->query("SELECT * FROM order_sewa 
+										  WHERE id_fakultas = '$fakultas_id' 
+										  AND stat_cst='0'
+										  AND stat_adm='1'AND (stat_drv='1' OR stat_drv='2')
+										 ")->row();
 
 		$x = 0;
 		if($cek_pinjaman){

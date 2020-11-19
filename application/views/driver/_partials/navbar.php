@@ -18,7 +18,7 @@
                                         <label class="toggle" for="drop-2">History</label><a href="#"><i class="nav-icon mr-2 i-Data"></i> History</a>
                                         <input id="drop-2" type="checkbox" />
                                         <ul>
-                                            <li><a href="<?php echo base_url()?>driver/Dashboard/Menunggu_Perjalanan/"><i class="nav-icon mr-2 i-Stopwatch"></i><span class="item-name">Sedang Berjalan</span></a></li>
+                                            <!-- <li><a href="<?php //echo base_url()?>driver/Dashboard/Menunggu_Perjalanan/"><i class="nav-icon mr-2 i-Stopwatch"></i><span class="item-name">Sedang Berjalan</span></a></li> -->
                                              <li><a href="<?php echo base_url()?>driver/Dashboard/Selesai"><i class="nav-icon mr-2 i-Yes"></i><span class="item-name">Selesai</span></a></li>
                                              <li><a href="<?php echo base_url()?>driver/Dashboard/Ditolak"><i class="nav-icon mr-2 i-Close"></i><span class="item-name">Ditolak</span></a></li>
                                         </ul>

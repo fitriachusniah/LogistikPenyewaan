@@ -146,7 +146,7 @@ class Sewa extends CI_Controller {
 	function close_trip($id){
 		$cost = $this->input->post('cost');
 		$sppd = $this->input->post('sppd');
-		$this->db->query("UPDATE order_sewa SET status = 1, cost = '$cost', sppd = '$sppd' WHERE id_order = '$id'");
+		$this->db->query("UPDATE order_sewa SET status = 1,stat_adm = 2, cost = '$cost', sppd = '$sppd' WHERE id_order = '$id'");
 		$notif_message = "Perjalanan selesai, trip closed";
 		$notif_action = 'success'; //success,error,warning,question
 		$this->session->set_flashdata('notifikasi', "<script type='text/javascript'>Swal.fire('$notif_message','','$notif_action')</script>");

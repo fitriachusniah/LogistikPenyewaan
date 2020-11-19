@@ -36,6 +36,7 @@
 										<th class="text-center" style="width: 5%">#</th>
 										<th>Nama Driver</th>
 										<th>No. HP</th>
+										<th>Username</th>
 										<th>Rating(1-5)</th>
 										<th class="text-center">Action</th>
 									</tr>
@@ -49,6 +50,7 @@
 											<td style="text-align: center;"><?= $no++ ?></td>
 											<td><?= $value->nama_driver ?></td>
 											<td><?= $value->no_hp ?></td>
+											<td><b><?= $value->user_name ?></b></td>
 											<td><?= number_format($value->avg_rating,2) ?></td>
 											<td class="text-center">
 												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_driver ?>">
@@ -241,6 +243,31 @@
 									<input name="no_hp" type="text" class="form-control form-control-rounded" value="<?= $key->no_hp ?>" required />
 								</div>
 							</div>
+						  	<div class="col-md-6">
+				                      <div class="form-group">
+				                        <label for="">Ubah Username(optional)</label>
+				                        <input
+				                          name="user_name"
+				                          type="text"
+				                          class="form-control form-control-rounded"
+				                          value="<?= $key->user_name ?>"
+				                          required
+				                        />
+				                      </div>
+				            </div>
+				            <div class="col-md-6">
+				                       <div class="form-group">
+				                        <label for="">Ubah Password(optional)</label>
+				                        <input
+				                          name="user_password"
+				                          type="password"
+				                          class="form-control form-control-rounded"
+				                          				                          
+				                        />
+				                        <input type="hidden" name="old_psw" value="<?= $key->user_password ?>">
+				                        <input type="hidden" name="user_id" value="<?= $key->user_id ?>">
+				                      </div>
+				            </div>
 							
 						</div>
 						<b>bertanda (*) harus diisi</b>

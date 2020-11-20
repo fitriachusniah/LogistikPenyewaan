@@ -35,6 +35,25 @@
           font-size: 12px;
           opacity: .75;
         }
+
+        #mapid{
+          height: 200px;
+          width: 100%
+        }
+
+        @media (min-width: 576px) {
+          #mapid{
+            height: 400px;
+            width: 100%
+          }
+        }
+
+        @media (min-width: 992px) {
+          #mapid{
+            height: 600px;
+            width: 80%;
+          }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>

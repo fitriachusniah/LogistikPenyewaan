@@ -18,6 +18,19 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	 public function __construct()
+ 	{
+ 		parent::__construct();
+ 		$this->locations = [
+			[-6.95855, 107.63992],
+			[-6.95233, 107.63718],
+			[-6.94577, 107.631],
+			[-6.94125, 107.62628],
+			[-6.93437, 107.61941],
+		];
+
+ 	}
+
 	public function index()
 	{
 		$this->load->helper('url');
@@ -35,5 +48,16 @@ class Welcome extends CI_Controller {
 		// $this->Notification_Model->insertToUser('new Order', 'ada pesanan masuk', 1);
 		// $this->Notification_Model->insertToRole('new Order', 'ada pesanan masuk', 1);
 		// $this->load->view('welcome_message');
+	}
+
+	public function driverTest($id_driver, $i){
+		if ($i<5) {
+			$lat = $this->locations[$i][0];
+			$long = $this->locations[$i][1];
+			$this->db->query("UPDATE driver SET latitude = '$lat', longitude = '$long', gps_update_time = DATE_ADD(gps_update_time, INTERVAL (15 - TIMESTAMPDIFF(SECOND, NOW(), gps_update_time)) SECOND) WHERE id_driver = $id_driver;");
+			sleep(5);
+
+			$this->driverTest($id_driver, $i++);
+		}
 	}
 }

@@ -36,6 +36,7 @@
 									<?php
 									$no = 1;
 									foreach ($list_sewa_masuk as $value) { ?>
+										<!-- <?php print_r($value); ?> -->
 
 										<tr>
 											<td style="text-align: center;"><?= $no++ ?></td>
@@ -75,7 +76,7 @@
 												<a class="text-success mr-2" href="#" data-toggle="modal" data-target="#detail<?= $value->id_order ?>">
 													<i class="nav-icon i-Eye font-weight-bold">Detail</i>
 												</a>
-												<a class="text-info mr-2" href="#">
+												<a class="text-info mr-2" href="#lacak" onclick="openLacak(<?= $value->id_driver ?>,'<?= $value->tgl_pergi ?>','<?= $value->nama_driver ?>','<?= $value->tujuan ?>')">
 													<i class="nav-icon i-Map font-weight-bold">-lacak</i>
 												</a>
 												<?php
@@ -95,6 +96,16 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div id="lacak"></div>
+			<div class="col-md-12" id="lacakDriver" style="display:none">
+				<br>
+				<center>
+					<h1>Sedang melacak <span id="lacak-driver"></span> tujuan <span id="lacak-lokasi"></span></h1>
+					<p>Terakhir update: <span id="lacak-last-update"></span></p>
+					<br>
+					<div id="mapid"></div>
+				</center>
 			</div>
 		</div>
 		<!-- end of main-content -->
@@ -412,6 +423,5 @@
 	</div>
 </div>
 <!-- ============ Search UI End ============= -->
-
 
 <?php $this->load->view('admin/_partials/js'); ?>

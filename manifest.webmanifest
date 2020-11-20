@@ -1,7 +1,7 @@
 {
   "background_color": "purple",
   "description": "Aplikasi milik Direktorat Logistik Telkom University.",
-  "display": "fullscreen",
+  "display": "standalone",
   "icons": [
     {
       "src": "assets/images/telkom.png",
@@ -11,5 +11,5 @@
   ],
   "name": "Peminjaman Logistik Tel-U",
   "short_name": "Oto Online",
-  "start_url": "/LogistikPenyewaan/"
+  "start_url": "/"
 }

@@ -80,10 +80,11 @@
     var id_driver = '<?= $_SESSION['id']; ?>';
 
   	$.get('<?= base_url() ?>driver/Dashboard/isDriving/' + id_driver, function(data, textStatus, xhr) {
-  			console.log(data);
+  			// console.log(data);
 
   			if (data == 1) {
   				if (navigator.geolocation) {
+            // alert('navigator.geolocation works');
   					console.log('navigator.geolocation works');
   					console.log("start tracking driver");
   					navigator.geolocation.watchPosition(sendData, errorCallback);
@@ -100,6 +101,7 @@
 
   	function sendData(position) {
   		console.log(position);
+      // alert(position);
 
   		var payload = {
   			id_driver: id_driver,

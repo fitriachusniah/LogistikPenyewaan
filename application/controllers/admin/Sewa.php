@@ -163,6 +163,7 @@ class Sewa extends CI_Controller {
 	function sewa_menunggu_perjalanan(){
 		$data = array(
 			'list_sewa_masuk'     => $this->Sewa_Model->list_sewa_menunggu_perjalanan(),
+			'js_file'   					=> 'Perjalanan.js.php',
 		);
 		$this->load->view('admin/Sewa_Menunggu_Perjalanan',$data);
 		//print_r($data);
@@ -203,6 +204,17 @@ class Sewa extends CI_Controller {
 
 	public function updateStatus($id){
 		$this->Notification_Model->updateStatusById($id);
+	}
+
+	public function getDriverLocation($id_driver, $last_update_time)
+	{
+		$data = $this->Drivers_Model->getDriverLocation($id_driver, urldecode($last_update_time));
+
+		if ($data) {
+			print_r(json_encode($data));
+		}else {
+			echo "0";
+		}
 	}
 }
 

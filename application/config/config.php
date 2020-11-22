@@ -24,6 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 */
 
+
 // $config['base_url'] = 'https://5c8328be4391.ngrok.io/LogistikPenyewaan/';
 $config['base_url'] = 'http://localhost/LogistikPeminjaman/';
 

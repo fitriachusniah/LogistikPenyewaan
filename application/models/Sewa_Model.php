@@ -183,7 +183,7 @@ class Sewa_Model extends CI_Model {
 
 	public function getApprovedTotal()
 	{
-		return $this->db->query("SELECT COUNT(id_order) as jmlApproved FROM order_sewa WHERE status = '1'")->row();
+		return $this->db->query("SELECT COUNT(id_order) as jmlApproved FROM order_sewa WHERE (stat_adm = '1' OR stat_adm = '2')")->row();
 	}
 
 	public function getCostTotalThisMonth()

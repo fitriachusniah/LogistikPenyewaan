@@ -7,7 +7,7 @@
                             <li>
                                 <div>
                                     <div>
-                                        <label class="toggle" for="drop-2">Dashboard</label><a href="<?php echo base_url()?>Driver/Dashboard/"><i class="nav-icon mr-2 i-Bar-Chart"></i> Dashboard</a>
+                                        <label class="toggle" for="drop-2">Dashboard</label><a href="<?php echo base_url()?>driver/Dashboard/"><i class="nav-icon mr-2 i-Bar-Chart"></i> Dashboard</a>
                                         <input id="drop-2" type="checkbox" />
                                     </div>
                                 </div>

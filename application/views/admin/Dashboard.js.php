@@ -2,7 +2,7 @@
     $(document).ready(function() {
 
       $.get('<?= base_url('admin/Dashboard/getDriverData/') ?>', function(data, textStatus, xhr) {
-        // data = JSON.parse(data);
+        data = JSON.parse(data);
 
         var max = Math.max.apply(null, data.trip);
         var min = Math.min.apply(null, data.trip);
@@ -94,7 +94,7 @@
           echartBar.on('click', function (params) {
             // console.log(params);
             var id = data.id[params.dataIndex];
-            window.open('<?= base_url() ?>admin/Dashboard/tripDetail/' + id, '_self');
+            window.open('tripDetail/' + id, '_self');
           });
         } // Chart in Dashboard version 1
       });
